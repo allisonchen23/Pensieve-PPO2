@@ -4,7 +4,7 @@ import logging
 import os
 import sys
 from abr import ABREnv
-import ppo2 as network
+import ppo2_repeat_dense as network
 import tensorflow as tf
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '3'

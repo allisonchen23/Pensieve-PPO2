@@ -4,7 +4,7 @@ os.environ['CUDA_VISIBLE_DEVICES']='-1'
 import numpy as np
 import tensorflow as tf
 import load_trace
-import ppo2 as network
+import ppo2_repeat_dense as network
 import fixed_env as env
 
 
@@ -26,7 +26,7 @@ LOG_FILE = './test_results/log_sim_rl'
 TEST_TRACES = './cooked_test_traces/'
 # log in format of time_stamp bit_rate buffer_size rebuffer_time chunk_size download_time reward
 NN_MODEL = sys.argv[1]
-    
+
 def main():
 
     np.random.seed(RANDOM_SEED)
@@ -69,7 +69,7 @@ def main():
         entropy_record = []
 
         video_count = 0
-        
+
         while True:  # serve video forever
             # the action is from the last decision
             # this is to make the framework similar to the real
@@ -122,7 +122,7 @@ def main():
             action_cumsum = np.cumsum(action_prob)
             bit_rate = (action_cumsum > np.random.randint(
                 1, RAND_RANGE) / float(RAND_RANGE)).argmax()
-            
+
             s_batch.append(state)
             entropy_record.append(0.)
 
