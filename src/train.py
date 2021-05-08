@@ -14,10 +14,10 @@ S_DIM = [6, 8]
 A_DIM = 6
 ACTOR_LR_RATE =1e-4
 CRITIC_LR_RATE = 1e-3
-NUM_AGENTS = 20
+NUM_AGENTS = 2 #20
 TRAIN_SEQ_LEN = 300  # take as a train batch
-TRAIN_EPOCH = 1000000
-MODEL_SAVE_INTERVAL = 300
+TRAIN_EPOCH = 100000 # 1000000
+MODEL_SAVE_INTERVAL = 5000 # 300
 RANDOM_SEED = 42
 RAND_RANGE = 10000
 SUMMARY_DIR = './results'
@@ -29,7 +29,7 @@ PPO_TRAINING_EPO = 10
 # create result directory
 if not os.path.exists(SUMMARY_DIR):
     os.makedirs(SUMMARY_DIR)
-    
+
 NN_MODEL = None
 
 def testing(epoch, nn_model, log_file):
@@ -116,13 +116,14 @@ def central_agent(net_params_queues, exp_queues):
 
             for _ in range(PPO_TRAINING_EPO):
                 actor.train(s_batch, a_batch, p_batch, v_batch, epoch)
-            
+
             if epoch % MODEL_SAVE_INTERVAL == 0:
+                print("Checkpoint at epoch {} / {}".format(epoch, TRAIN_EPOCH))
                 # Save the neural net parameters to disk.
                 save_path = saver.save(sess, SUMMARY_DIR + "/nn_model_ep_" +
                                        str(epoch) + ".ckpt")
                 testing(epoch,
-                    SUMMARY_DIR + "/nn_model_ep_" + str(epoch) + ".ckpt", 
+                    SUMMARY_DIR + "/nn_model_ep_" + str(epoch) + ".ckpt",
                     test_log_file)
 
 def agent(agent_id, net_params_queue, exp_queue):
