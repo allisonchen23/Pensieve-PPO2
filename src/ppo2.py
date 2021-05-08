@@ -41,7 +41,7 @@ class Network():
             pi = tflearn.fully_connected(net, self.a_dim, activation='softmax')
             value = tflearn.fully_connected(net, 1, activation='linear')
             return pi, value
-            
+
     def get_network_params(self):
         return self.sess.run(self.network_params)
 
@@ -66,13 +66,13 @@ class Network():
         self.real_out = tf.clip_by_value(self.pi, ACTION_EPS, 1. - ACTION_EPS)
         self.entropy = tf.multiply(self.real_out, tf.log(self.real_out))
         self.adv = tf.stop_gradient(self.R - self.val)
-        self.ratio = tf.reduce_sum(tf.multiply(self.real_out, self.acts), reduction_indices=1, keepdims=True) / \
-                tf.reduce_sum(tf.multiply(self.old_pi, self.acts), reduction_indices=1, keepdims=True)
-        
-        self.ppo2loss = tf.minimum(self.ratio * self.adv, 
+        self.ratio = tf.reduce_sum(tf.multiply(self.real_out, self.acts), reduction_indices=1, keep_dims=True) / \
+                tf.reduce_sum(tf.multiply(self.old_pi, self.acts), reduction_indices=1, keep_dims=True)
+
+        self.ppo2loss = tf.minimum(self.ratio * self.adv,
                             tf.clip_by_value(self.ratio, 1 - EPS, 1 + EPS) * self.adv
                         )
-        
+
         # Get all network parameters
         self.network_params = \
             tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope='actor')
@@ -86,13 +86,13 @@ class Network():
         for idx, param in enumerate(self.input_network_params):
             self.set_network_params_op.append(
                 self.network_params[idx].assign(param))
-        
+
         self.loss = tflearn.mean_square(self.val, self.R) \
             - tf.reduce_sum(self.ppo2loss) \
             + self.entropy_weight * tf.reduce_sum(self.entropy)
-        
+
         self.optimize = tf.train.AdamOptimizer(self.lr_rate).minimize(self.loss)
-    
+
     def predict(self, input):
         action = self.sess.run(self.real_out, feed_dict={
             self.inputs: input
@@ -123,7 +123,7 @@ class Network():
             self.sess.run(self.optimize, feed_dict={
                 self.inputs: s_batch[i:i+batch_size],
                 self.acts: a_batch[i:i+batch_size],
-                self.R: v_batch[i:i+batch_size], 
+                self.R: v_batch[i:i+batch_size],
                 self.old_pi: p_batch[i:i+batch_size],
                 self.entropy_weight: self.get_entropy(epoch)
             })
@@ -136,7 +136,7 @@ class Network():
 
         if terminal:
             R_batch[-1, 0] = 0  # terminal state
-        else:    
+        else:
             v_batch = self.sess.run(self.val, feed_dict={
                 self.inputs: s_batch
             })
