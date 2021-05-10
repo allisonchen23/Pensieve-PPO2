@@ -24,7 +24,7 @@ SUMMARY_DIR = './results'
 MODEL_DIR = './models'
 TRAIN_TRACES = './cooked_traces/'
 TEST_LOG_FOLDER = './original_test_results/'
-LOG_FILE = './results/log'
+LOG_FILE = './results/original_log'
 PPO_TRAINING_EPO = 10
 # create result directory
 if not os.path.exists(SUMMARY_DIR):
