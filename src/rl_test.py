@@ -4,7 +4,7 @@ os.environ['CUDA_VISIBLE_DEVICES']='-1'
 import numpy as np
 import tensorflow as tf
 import load_trace
-import ppo2 as network
+import ppo2_keep_scalar as network
 import fixed_env as env
 
 
@@ -22,7 +22,7 @@ SMOOTH_PENALTY = 1
 DEFAULT_QUALITY = 1  # default video quality without agent
 RANDOM_SEED = 42
 RAND_RANGE = 1000
-LOG_FILE = './original_test_results/log_sim_rl'
+LOG_FILE = './keep_scalar_test_results/log_sim_rl'
 TEST_TRACES = './cooked_test_traces/'
 # log in format of time_stamp bit_rate buffer_size rebuffer_time chunk_size download_time reward
 NN_MODEL = sys.argv[1]

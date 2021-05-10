@@ -4,7 +4,7 @@ import logging
 import os
 import sys
 from abr import ABREnv
-import ppo2 as network
+import ppo2_keep_scalar as network
 import tensorflow as tf
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '3'
@@ -23,8 +23,8 @@ RAND_RANGE = 10000
 SUMMARY_DIR = './results'
 MODEL_DIR = './models'
 TRAIN_TRACES = './cooked_traces/'
-TEST_LOG_FOLDER = './original_test_results/'
-LOG_FILE = './results/original_log'
+TEST_LOG_FOLDER = './keep_scalar_test_results/'
+LOG_FILE = './results/keep_scalar_log'
 PPO_TRAINING_EPO = 10
 # create result directory
 if not os.path.exists(SUMMARY_DIR):
