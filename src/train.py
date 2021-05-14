@@ -4,8 +4,9 @@ import logging
 import os
 import sys
 from abr import ABREnv
-import ppo2 as network
+import ppo2_feed_forward_dense as network
 import tensorflow as tf
+import global_constants as settings
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '3'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -23,8 +24,10 @@ RAND_RANGE = 10000
 SUMMARY_DIR = './results'
 MODEL_DIR = './models'
 TRAIN_TRACES = './cooked_traces/'
-TEST_LOG_FOLDER = './original_test_results/'
-LOG_FILE = './results/original_log'
+# MODEL_ARCH = 'ffd'
+# N_DENSE_LAYERS = 1
+# TEST_LOG_FOLDER = './{}_test_results/'.format(MODEL_ARCH)
+# LOG_FILE = './results/{}_log'.format(MODEL_ARCH)
 PPO_TRAINING_EPO = 10
 # create result directory
 if not os.path.exists(SUMMARY_DIR):
@@ -34,20 +37,20 @@ NN_MODEL = None
 
 def testing(epoch, nn_model, log_file):
     # clean up the test results folder
-    os.system('rm -r ' + TEST_LOG_FOLDER)
+    os.system('rm -r ' + settings.TEST_LOG_FOLDER)
     #os.system('mkdir ' + TEST_LOG_FOLDER)
 
-    if not os.path.exists(TEST_LOG_FOLDER):
-        os.makedirs(TEST_LOG_FOLDER)
+    if not os.path.exists(settings.TEST_LOG_FOLDER):
+        os.makedirs(settings.TEST_LOG_FOLDER)
     # run test script
     os.system('python rl_test.py ' + nn_model)
 
     # append test performance to the log
     rewards = []
-    test_log_files = os.listdir(TEST_LOG_FOLDER)
+    test_log_files = os.listdir(settings.TEST_LOG_FOLDER)
     for test_log_file in test_log_files:
         reward = []
-        with open(TEST_LOG_FOLDER + test_log_file, 'rb') as f:
+        with open(settings.TEST_LOG_FOLDER + test_log_file, 'rb') as f:
             for line in f:
                 parse = line.split()
                 try:
@@ -80,11 +83,12 @@ def central_agent(net_params_queues, exp_queues):
 
     assert len(net_params_queues) == NUM_AGENTS
     assert len(exp_queues) == NUM_AGENTS
-    with tf.Session() as sess, open(LOG_FILE + '_test.txt', 'w') as test_log_file:
+    with tf.Session() as sess, open(settings.LOG_FILE + '_test.txt', 'w') as test_log_file:
 
         actor = network.Network(sess,
                 state_dim=S_DIM, action_dim=A_DIM,
-                learning_rate=ACTOR_LR_RATE)
+                learning_rate=ACTOR_LR_RATE,
+                n_dense=settings.N_DENSE_LAYERS)
 
         sess.run(tf.global_variables_initializer())
         saver = tf.train.Saver(max_to_keep=1000)  # save neural net parameters
@@ -131,7 +135,8 @@ def agent(agent_id, net_params_queue, exp_queue):
     with tf.Session() as sess, open(SUMMARY_DIR + '/log_agent_' + str(agent_id), 'w') as log_file:
         actor = network.Network(sess,
                                 state_dim=S_DIM, action_dim=A_DIM,
-                                learning_rate=ACTOR_LR_RATE)
+                                learning_rate=ACTOR_LR_RATE,
+                                n_dense=settings.N_DENSE_LAYERS)
 
         # initial synchronization of the network parameters from the coordinator
         actor_net_params = net_params_queue.get()

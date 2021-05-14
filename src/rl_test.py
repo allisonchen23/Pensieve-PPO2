@@ -4,9 +4,9 @@ os.environ['CUDA_VISIBLE_DEVICES']='-1'
 import numpy as np
 import tensorflow as tf
 import load_trace
-import ppo2 as network
+import ppo2_feed_forward_dense as network
 import fixed_env as env
-
+import global_constants as settings
 
 S_INFO = 6  # bit_rate, buffer_size, next_chunk_size, bandwidth_measurement(throughput and time), chunk_til_video_end
 S_LEN = 8  # take how many frames in the past
@@ -22,7 +22,8 @@ SMOOTH_PENALTY = 1
 DEFAULT_QUALITY = 1  # default video quality without agent
 RANDOM_SEED = 42
 RAND_RANGE = 1000
-LOG_FILE = './original_test_results/log_sim_rl'
+# MODEL_ARCH = 'ffd'
+# LOG_FILE = './{}_test_results/log_sim_rl'.format(MODEL_ARCH)
 TEST_TRACES = './cooked_test_traces/'
 # log in format of time_stamp bit_rate buffer_size rebuffer_time chunk_size download_time reward
 NN_MODEL = sys.argv[1]
@@ -38,14 +39,14 @@ def main():
     net_env = env.Environment(all_cooked_time=all_cooked_time,
                               all_cooked_bw=all_cooked_bw)
 
-    log_path = LOG_FILE + '_' + all_file_names[net_env.trace_idx]
+    log_path = settings.TEST_LOG_FILE + '_' + all_file_names[net_env.trace_idx]
     log_file = open(log_path, 'w')
 
     with tf.Session() as sess:
 
         actor = network.Network(sess,
                                  state_dim=[S_INFO, S_LEN], action_dim=A_DIM,
-                                 learning_rate=ACTOR_LR_RATE)
+                                 learning_rate=ACTOR_LR_RATE, n_dense=settings.N_DENSE_LAYERS)
 
         sess.run(tf.global_variables_initializer())
         saver = tf.train.Saver()  # save neural net parameters
@@ -149,7 +150,7 @@ def main():
                 if video_count >= len(all_file_names):
                     break
 
-                log_path = LOG_FILE + '_' + all_file_names[net_env.trace_idx]
+                log_path = settings.TEST_LOG_FILE + '_' + all_file_names[net_env.trace_idx]
                 log_file = open(log_path, 'w')
 
 
