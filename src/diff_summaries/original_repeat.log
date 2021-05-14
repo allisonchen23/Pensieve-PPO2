@@ -1,0 +1,874 @@
+Summary of log_sim_rl_norway_bus_1:
+bit_rate_prediction:
+	mean_diff: -470.8333333333333	mse: 620104.1666666666	n_diff: 21.0
+reward:
+	mean_diff: -0.4020833333333334	mse: 0.6432291666666666	n_diff: 22.0
+
+Summary of log_sim_rl_norway_bus_10:
+bit_rate_prediction:
+	mean_diff: -196.875	mse: 464947.9166666667	n_diff: 29.0
+reward:
+	mean_diff: -0.009375000000000003	mse: 0.6832812500000002	n_diff: 37.0
+
+Summary of log_sim_rl_norway_bus_11:
+bit_rate_prediction:
+	mean_diff: 14.583333333333334	mse: 127187.5	n_diff: 17.0
+reward:
+	mean_diff: 0.07916666666666668	mse: 0.22239583333333335	n_diff: 22.0
+
+Summary of log_sim_rl_norway_bus_12:
+bit_rate_prediction:
+	mean_diff: 3.125	mse: 132968.75	n_diff: 19.0
+reward:
+	mean_diff: 0.13020833333333334	mse: 0.20046875000000006	n_diff: 23.0
+
+Summary of log_sim_rl_norway_bus_13:
+bit_rate_prediction:
+	mean_diff: 5.208333333333333	mse: 50989.583333333336	n_diff: 11.0
+reward:
+	mean_diff: 0.06979166666666665	mse: 0.11848958333333333	n_diff: 14.0
+
+Summary of log_sim_rl_norway_bus_14:
+bit_rate_prediction:
+	mean_diff: -194.79166666666666	mse: 256822.91666666666	n_diff: 17.0
+reward:
+	mean_diff: -0.23125000000000004	mse: 0.3088541666666667	n_diff: 18.0
+
+Summary of log_sim_rl_norway_bus_15:
+bit_rate_prediction:
+	mean_diff: -222.91666666666666	mse: 350312.5	n_diff: 16.0
+reward:
+	mean_diff: -0.209375	mse: 0.4702604166666667	n_diff: 18.0
+
+Summary of log_sim_rl_norway_bus_16:
+bit_rate_prediction:
+	mean_diff: -229.16666666666666	mse: 243229.16666666666	n_diff: 16.0
+reward:
+	mean_diff: -0.09270833333333335	mse: 0.20838541666666668	n_diff: 18.0
+
+Summary of log_sim_rl_norway_bus_17:
+bit_rate_prediction:
+	mean_diff: -247.91666666666666	mse: 282187.5	n_diff: 16.0
+reward:
+	mean_diff: -0.23333333333333336	mse: 0.4901041666666668	n_diff: 20.0
+
+Summary of log_sim_rl_norway_bus_18:
+bit_rate_prediction:
+	mean_diff: -267.7083333333333	mse: 361822.9166666667	n_diff: 23.0
+reward:
+	mean_diff: -0.20520833333333335	mse: 0.3461979166666667	n_diff: 25.0
+
+Summary of log_sim_rl_norway_bus_19:
+bit_rate_prediction:
+	mean_diff: -53.125	mse: 131093.75	n_diff: 16.0
+reward:
+	mean_diff: -0.025000000000000005	mse: 0.2758333333333333	n_diff: 23.0
+
+Summary of log_sim_rl_norway_bus_2:
+bit_rate_prediction:
+	mean_diff: -255.20833333333334	mse: 353593.75	n_diff: 20.0
+reward:
+	mean_diff: -0.060416666666666674	mse: 0.258125	n_diff: 23.0
+
+Summary of log_sim_rl_norway_bus_20:
+bit_rate_prediction:
+	mean_diff: -195.83333333333334	mse: 278229.1666666667	n_diff: 20.0
+reward:
+	mean_diff: -0.18958333333333335	mse: 0.36364583333333345	n_diff: 24.0
+
+Summary of log_sim_rl_norway_bus_21:
+bit_rate_prediction:
+	mean_diff: -177.08333333333334	mse: 303020.8333333333	n_diff: 25.0
+reward:
+	mean_diff: -0.15000000000000002	mse: 0.5146875000000001	n_diff: 34.0
+
+Summary of log_sim_rl_norway_bus_22:
+bit_rate_prediction:
+	mean_diff: -237.5	mse: 367291.6666666667	n_diff: 25.0
+reward:
+	mean_diff: 0.0031249999999999937	mse: 0.32953125000000005	n_diff: 27.0
+
+Summary of log_sim_rl_norway_bus_23:
+bit_rate_prediction:
+	mean_diff: 40.625	mse: 464635.4166666667	n_diff: 26.0
+reward:
+	mean_diff: -0.1786167315638166	mse: 4.459712069681438	n_diff: 35.0
+
+Summary of log_sim_rl_norway_bus_3:
+bit_rate_prediction:
+	mean_diff: -3.125	mse: 119947.91666666667	n_diff: 14.0
+reward:
+	mean_diff: -0.0020833333333333446	mse: 0.5078125000000001	n_diff: 23.0
+
+Summary of log_sim_rl_norway_bus_4:
+bit_rate_prediction:
+	mean_diff: -409.375	mse: 562864.5833333334	n_diff: 28.0
+reward:
+	mean_diff: -0.3114583333333334	mse: 0.7130729166666668	n_diff: 31.0
+
+Summary of log_sim_rl_norway_bus_5:
+bit_rate_prediction:
+	mean_diff: 11.458333333333334	mse: 98489.58333333333	n_diff: 13.0
+reward:
+	mean_diff: 0.12916666666666665	mse: 0.14489583333333333	n_diff: 20.0
+
+Summary of log_sim_rl_norway_bus_6:
+bit_rate_prediction:
+	mean_diff: -281.25	mse: 453125.0	n_diff: 25.0
+reward:
+	mean_diff: -0.18437500000000004	mse: 0.48661458333333335	n_diff: 27.0
+
+Summary of log_sim_rl_norway_bus_7:
+bit_rate_prediction:
+	mean_diff: -388.5416666666667	mse: 564010.4166666666	n_diff: 28.0
+reward:
+	mean_diff: -0.3072916666666667	mse: 0.6340104166666668	n_diff: 30.0
+
+Summary of log_sim_rl_norway_bus_8:
+bit_rate_prediction:
+	mean_diff: -338.5416666666667	mse: 710885.4166666666	n_diff: 32.0
+reward:
+	mean_diff: -0.26458333333333334	mse: 0.8847916666666668	n_diff: 35.0
+
+Summary of log_sim_rl_norway_bus_9:
+bit_rate_prediction:
+	mean_diff: -307.2916666666667	mse: 505989.5833333333	n_diff: 32.0
+reward:
+	mean_diff: -0.12395833333333334	mse: 0.7551562500000001	n_diff: 38.0
+
+Summary of log_sim_rl_norway_car_1:
+bit_rate_prediction:
+	mean_diff: 10.416666666666666	mse: 603020.8333333334	n_diff: 19.0
+reward:
+	mean_diff: 0.1322916666666667	mse: 0.5329687500000001	n_diff: 24.0
+
+Summary of log_sim_rl_norway_car_10:
+bit_rate_prediction:
+	mean_diff: -12.5	mse: 123437.5	n_diff: 20.0
+reward:
+	mean_diff: 0.06979166666666668	mse: 0.28046875000000004	n_diff: 27.0
+
+Summary of log_sim_rl_norway_car_11:
+bit_rate_prediction:
+	mean_diff: 6.25	mse: 153229.16666666666	n_diff: 18.0
+reward:
+	mean_diff: 0.036458333333333315	mse: 0.23026041666666672	n_diff: 25.0
+
+Summary of log_sim_rl_norway_car_12:
+bit_rate_prediction:
+	mean_diff: -30.208333333333332	mse: 522447.9166666667	n_diff: 28.0
+reward:
+	mean_diff: 0.7424759376646256	mse: 9.30910939889973	n_diff: 35.0
+
+Summary of log_sim_rl_norway_car_2:
+bit_rate_prediction:
+	mean_diff: 15.625	mse: 68593.75	n_diff: 13.0
+reward:
+	mean_diff: 0.08125	mse: 0.2589583333333334	n_diff: 23.0
+
+Summary of log_sim_rl_norway_car_3:
+bit_rate_prediction:
+	mean_diff: -6.25	mse: 290833.3333333333	n_diff: 21.0
+reward:
+	mean_diff: 0.2625	mse: 0.6483333333333334	n_diff: 25.0
+
+Summary of log_sim_rl_norway_car_4:
+bit_rate_prediction:
+	mean_diff: -87.5	mse: 454583.3333333333	n_diff: 33.0
+reward:
+	mean_diff: 0.06354166666666666	mse: 0.7047395833333333	n_diff: 39.0
+
+Summary of log_sim_rl_norway_car_5:
+bit_rate_prediction:
+	mean_diff: 7.291666666666667	mse: 178802.08333333334	n_diff: 21.0
+reward:
+	mean_diff: 0.11562499999999998	mse: 0.34567708333333336	n_diff: 29.0
+
+Summary of log_sim_rl_norway_car_6:
+bit_rate_prediction:
+	mean_diff: 1.0416666666666667	mse: 161614.58333333334	n_diff: 19.0
+reward:
+	mean_diff: 0.13125	mse: 0.3776041666666667	n_diff: 27.0
+
+Summary of log_sim_rl_norway_car_7:
+bit_rate_prediction:
+	mean_diff: -6.25	mse: 121979.16666666667	n_diff: 14.0
+reward:
+	mean_diff: -0.002083333333333333	mse: 0.16677083333333334	n_diff: 16.0
+
+Summary of log_sim_rl_norway_car_8:
+bit_rate_prediction:
+	mean_diff: -129.16666666666666	mse: 242083.33333333334	n_diff: 20.0
+reward:
+	mean_diff: -0.13750000000000004	mse: 0.3914583333333334	n_diff: 27.0
+
+Summary of log_sim_rl_norway_car_9:
+bit_rate_prediction:
+	mean_diff: -89.58333333333333	mse: 228750.0	n_diff: 20.0
+reward:
+	mean_diff: -0.05416666666666666	mse: 0.4908333333333334	n_diff: 27.0
+
+Summary of log_sim_rl_norway_ferry_1:
+bit_rate_prediction:
+	mean_diff: 9.375	mse: 118697.91666666667	n_diff: 14.0
+reward:
+	mean_diff: 0.14895833333333333	mse: 0.20098958333333336	n_diff: 23.0
+
+Summary of log_sim_rl_norway_ferry_10:
+bit_rate_prediction:
+	mean_diff: 17.708333333333332	mse: 144635.41666666666	n_diff: 17.0
+reward:
+	mean_diff: 0.023958333333333342	mse: 0.3913020833333334	n_diff: 26.0
+
+Summary of log_sim_rl_norway_ferry_11:
+bit_rate_prediction:
+	mean_diff: -103.125	mse: 264843.75	n_diff: 26.0
+reward:
+	mean_diff: 0.04479166666666665	mse: 0.39901041666666676	n_diff: 31.0
+
+Summary of log_sim_rl_norway_ferry_12:
+bit_rate_prediction:
+	mean_diff: -34.375	mse: 225781.25	n_diff: 19.0
+reward:
+	mean_diff: -0.134375	mse: 0.37432291666666667	n_diff: 29.0
+
+Summary of log_sim_rl_norway_ferry_13:
+bit_rate_prediction:
+	mean_diff: -227.08333333333334	mse: 405833.3333333333	n_diff: 29.0
+reward:
+	mean_diff: -0.4027780613437832	mse: 3.0825989350227716	n_diff: 31.0
+
+Summary of log_sim_rl_norway_ferry_14:
+bit_rate_prediction:
+	mean_diff: -434.375	mse: 600885.4166666666	n_diff: 30.0
+reward:
+	mean_diff: -0.34375000000000006	mse: 0.5618750000000001	n_diff: 35.0
+
+Summary of log_sim_rl_norway_ferry_15:
+bit_rate_prediction:
+	mean_diff: -34.375	mse: 346718.75	n_diff: 22.0
+reward:
+	mean_diff: 0.09166666666666663	mse: 0.40750000000000003	n_diff: 25.0
+
+Summary of log_sim_rl_norway_ferry_16:
+bit_rate_prediction:
+	mean_diff: -444.7916666666667	mse: 464531.25	n_diff: 27.0
+reward:
+	mean_diff: -0.40416666666666673	mse: 0.6084375000000001	n_diff: 32.0
+
+Summary of log_sim_rl_norway_ferry_17:
+bit_rate_prediction:
+	mean_diff: 7.291666666666667	mse: 250781.25	n_diff: 27.0
+reward:
+	mean_diff: 0.24687500000000004	mse: 0.5114062500000001	n_diff: 34.0
+
+Summary of log_sim_rl_norway_ferry_18:
+bit_rate_prediction:
+	mean_diff: 15.625	mse: 111510.41666666667	n_diff: 15.0
+reward:
+	mean_diff: 0.03229166666666667	mse: 0.18380208333333337	n_diff: 18.0
+
+Summary of log_sim_rl_norway_ferry_19:
+bit_rate_prediction:
+	mean_diff: 13.541666666666666	mse: 140781.25	n_diff: 18.0
+reward:
+	mean_diff: 0.11770833333333332	mse: 0.21765625	n_diff: 25.0
+
+Summary of log_sim_rl_norway_ferry_2:
+bit_rate_prediction:
+	mean_diff: 6.25	mse: 132604.16666666666	n_diff: 17.0
+reward:
+	mean_diff: -0.07916666666666668	mse: 0.21843750000000006	n_diff: 21.0
+
+Summary of log_sim_rl_norway_ferry_20:
+bit_rate_prediction:
+	mean_diff: -2.0833333333333335	mse: 122812.5	n_diff: 17.0
+reward:
+	mean_diff: 0.012500000000000002	mse: 0.30656250000000007	n_diff: 21.0
+
+Summary of log_sim_rl_norway_ferry_3:
+bit_rate_prediction:
+	mean_diff: 14.583333333333334	mse: 72812.5	n_diff: 11.0
+reward:
+	mean_diff: 0.060416666666666674	mse: 0.17552083333333332	n_diff: 16.0
+
+Summary of log_sim_rl_norway_ferry_4:
+bit_rate_prediction:
+	mean_diff: -5.208333333333333	mse: 227031.25	n_diff: 16.0
+reward:
+	mean_diff: -0.14375	mse: 0.49052083333333335	n_diff: 18.0
+
+Summary of log_sim_rl_norway_ferry_5:
+bit_rate_prediction:
+	mean_diff: -3.125	mse: 173177.08333333334	n_diff: 19.0
+reward:
+	mean_diff: 0.07604166666666667	mse: 0.32651041666666664	n_diff: 27.0
+
+Summary of log_sim_rl_norway_ferry_6:
+bit_rate_prediction:
+	mean_diff: -458.3333333333333	mse: 589062.5	n_diff: 32.0
+reward:
+	mean_diff: -0.5416666666666666	mse: 0.7767708333333334	n_diff: 35.0
+
+Summary of log_sim_rl_norway_ferry_7:
+bit_rate_prediction:
+	mean_diff: 20.833333333333332	mse: 235937.5	n_diff: 23.0
+reward:
+	mean_diff: 0.004166666666666634	mse: 0.3494791666666666	n_diff: 31.0
+
+Summary of log_sim_rl_norway_ferry_8:
+bit_rate_prediction:
+	mean_diff: -1.0416666666666667	mse: 139947.91666666666	n_diff: 18.0
+reward:
+	mean_diff: 0.0072916666666666685	mse: 0.2830729166666667	n_diff: 23.0
+
+Summary of log_sim_rl_norway_ferry_9:
+bit_rate_prediction:
+	mean_diff: 27.083333333333332	mse: 105937.5	n_diff: 16.0
+reward:
+	mean_diff: 0.16041666666666668	mse: 0.23156250000000003	n_diff: 21.0
+
+Summary of log_sim_rl_norway_metro_1:
+bit_rate_prediction:
+	mean_diff: -198.95833333333334	mse: 304739.5833333333	n_diff: 22.0
+reward:
+	mean_diff: -0.014583333333333339	mse: 0.29968750000000005	n_diff: 28.0
+
+Summary of log_sim_rl_norway_metro_10:
+bit_rate_prediction:
+	mean_diff: 21.875	mse: 123177.08333333333	n_diff: 16.0
+reward:
+	mean_diff: 0.03437500000000002	mse: 0.2075520833333333	n_diff: 21.0
+
+Summary of log_sim_rl_norway_metro_2:
+bit_rate_prediction:
+	mean_diff: -51.041666666666664	mse: 157135.41666666666	n_diff: 17.0
+reward:
+	mean_diff: -0.06562500000000002	mse: 0.27296875000000004	n_diff: 21.0
+
+Summary of log_sim_rl_norway_metro_3:
+bit_rate_prediction:
+	mean_diff: -50.0	mse: 135208.33333333334	n_diff: 19.0
+reward:
+	mean_diff: 0.022916666666666658	mse: 0.13145833333333334	n_diff: 22.0
+
+Summary of log_sim_rl_norway_metro_4:
+bit_rate_prediction:
+	mean_diff: 37.5	mse: 217083.33333333334	n_diff: 23.0
+reward:
+	mean_diff: 0.18958333333333333	mse: 0.41583333333333333	n_diff: 31.0
+
+Summary of log_sim_rl_norway_metro_5:
+bit_rate_prediction:
+	mean_diff: 14.583333333333334	mse: 162395.83333333334	n_diff: 18.0
+reward:
+	mean_diff: 0.07604166666666666	mse: 0.3331770833333334	n_diff: 25.0
+
+Summary of log_sim_rl_norway_metro_6:
+bit_rate_prediction:
+	mean_diff: -3.125	mse: 118281.25	n_diff: 14.0
+reward:
+	mean_diff: -0.013541666666666669	mse: 0.3124479166666667	n_diff: 20.0
+
+Summary of log_sim_rl_norway_metro_7:
+bit_rate_prediction:
+	mean_diff: 25.0	mse: 131875.0	n_diff: 22.0
+reward:
+	mean_diff: 0.096875	mse: 0.23828125	n_diff: 27.0
+
+Summary of log_sim_rl_norway_metro_8:
+bit_rate_prediction:
+	mean_diff: 20.833333333333332	mse: 94270.83333333333	n_diff: 18.0
+reward:
+	mean_diff: 0.13958333333333334	mse: 0.20447916666666668	n_diff: 22.0
+
+Summary of log_sim_rl_norway_metro_9:
+bit_rate_prediction:
+	mean_diff: 19.791666666666668	mse: 143697.91666666666	n_diff: 22.0
+reward:
+	mean_diff: 0.16770833333333335	mse: 0.3630729166666667	n_diff: 27.0
+
+Summary of log_sim_rl_norway_train_1:
+bit_rate_prediction:
+	mean_diff: 42.708333333333336	mse: 166614.58333333334	n_diff: 22.0
+reward:
+	mean_diff: -0.04895833333333335	mse: 0.32786458333333335	n_diff: 29.0
+
+Summary of log_sim_rl_norway_train_10:
+bit_rate_prediction:
+	mean_diff: -223.95833333333334	mse: 394635.4166666667	n_diff: 21.0
+reward:
+	mean_diff: -0.15312500000000004	mse: 0.5933854166666667	n_diff: 26.0
+
+Summary of log_sim_rl_norway_train_11:
+bit_rate_prediction:
+	mean_diff: 3.125	mse: 253072.91666666666	n_diff: 22.0
+reward:
+	mean_diff: 0.15520833333333336	mse: 0.4599479166666667	n_diff: 30.0
+
+Summary of log_sim_rl_norway_train_12:
+bit_rate_prediction:
+	mean_diff: -96.875	mse: 243906.25	n_diff: 17.0
+reward:
+	mean_diff: -0.03645833333333335	mse: 0.26703125	n_diff: 22.0
+
+Summary of log_sim_rl_norway_train_13:
+bit_rate_prediction:
+	mean_diff: -256.25	mse: 455000.0	n_diff: 22.0
+reward:
+	mean_diff: -0.08645833333333337	mse: 0.5749479166666666	n_diff: 24.0
+
+Summary of log_sim_rl_norway_train_14:
+bit_rate_prediction:
+	mean_diff: 23.958333333333332	mse: 409739.5833333333	n_diff: 23.0
+reward:
+	mean_diff: 0.03645833333333335	mse: 0.5776562500000001	n_diff: 33.0
+
+Summary of log_sim_rl_norway_train_15:
+bit_rate_prediction:
+	mean_diff: -286.4583333333333	mse: 541822.9166666666	n_diff: 24.0
+reward:
+	mean_diff: -0.3364583333333333	mse: 0.8805729166666668	n_diff: 28.0
+
+Summary of log_sim_rl_norway_train_16:
+bit_rate_prediction:
+	mean_diff: -61.458333333333336	mse: 286510.4166666667	n_diff: 21.0
+reward:
+	mean_diff: 0.209375	mse: 0.5142187500000001	n_diff: 25.0
+
+Summary of log_sim_rl_norway_train_17:
+bit_rate_prediction:
+	mean_diff: -170.83333333333334	mse: 298958.3333333333	n_diff: 24.0
+reward:
+	mean_diff: -0.12291666666666667	mse: 0.35166666666666674	n_diff: 30.0
+
+Summary of log_sim_rl_norway_train_18:
+bit_rate_prediction:
+	mean_diff: -232.29166666666666	mse: 390989.5833333333	n_diff: 18.0
+reward:
+	mean_diff: -0.04375000000000001	mse: 0.39572916666666674	n_diff: 23.0
+
+Summary of log_sim_rl_norway_train_19:
+bit_rate_prediction:
+	mean_diff: -109.375	mse: 286510.4166666667	n_diff: 24.0
+reward:
+	mean_diff: -0.12395833333333334	mse: 0.45421875000000006	n_diff: 32.0
+
+Summary of log_sim_rl_norway_train_2:
+bit_rate_prediction:
+	mean_diff: -8.333333333333334	mse: 80416.66666666667	n_diff: 13.0
+reward:
+	mean_diff: 0.009375000000000001	mse: 0.22765625	n_diff: 16.0
+
+Summary of log_sim_rl_norway_train_20:
+bit_rate_prediction:
+	mean_diff: -143.75	mse: 289375.0	n_diff: 23.0
+reward:
+	mean_diff: -0.20000000000000004	mse: 0.5300000000000001	n_diff: 31.0
+
+Summary of log_sim_rl_norway_train_21:
+bit_rate_prediction:
+	mean_diff: -160.41666666666666	mse: 311770.8333333333	n_diff: 21.0
+reward:
+	mean_diff: -0.025000000000000005	mse: 0.3580208333333334	n_diff: 26.0
+
+Summary of log_sim_rl_norway_train_3:
+bit_rate_prediction:
+	mean_diff: 20.833333333333332	mse: 92916.66666666667	n_diff: 14.0
+reward:
+	mean_diff: 0.007291666666666676	mse: 0.12244791666666667	n_diff: 19.0
+
+Summary of log_sim_rl_norway_train_4:
+bit_rate_prediction:
+	mean_diff: 8.333333333333334	mse: 289791.6666666667	n_diff: 22.0
+reward:
+	mean_diff: 0.125	mse: 0.2783333333333334	n_diff: 26.0
+
+Summary of log_sim_rl_norway_train_5:
+bit_rate_prediction:
+	mean_diff: 36.458333333333336	mse: 143697.91666666666	n_diff: 13.0
+reward:
+	mean_diff: 0.15312499999999998	mse: 0.2503645833333334	n_diff: 14.0
+
+Summary of log_sim_rl_norway_train_6:
+bit_rate_prediction:
+	mean_diff: 27.083333333333332	mse: 106666.66666666667	n_diff: 17.0
+reward:
+	mean_diff: 0.1416666666666667	mse: 0.20395833333333335	n_diff: 25.0
+
+Summary of log_sim_rl_norway_train_7:
+bit_rate_prediction:
+	mean_diff: 12.5	mse: 169375.0	n_diff: 20.0
+reward:
+	mean_diff: 0.04583333333333334	mse: 0.3618750000000001	n_diff: 24.0
+
+Summary of log_sim_rl_norway_train_8:
+bit_rate_prediction:
+	mean_diff: 4.166666666666667	mse: 93645.83333333333	n_diff: 12.0
+reward:
+	mean_diff: 0.05937499999999998	mse: 0.16109375000000004	n_diff: 18.0
+
+Summary of log_sim_rl_norway_train_9:
+bit_rate_prediction:
+	mean_diff: 30.208333333333332	mse: 132239.58333333334	n_diff: 18.0
+reward:
+	mean_diff: 0.23229166666666667	mse: 0.29348958333333336	n_diff: 24.0
+
+Summary of log_sim_rl_norway_tram_1:
+bit_rate_prediction:
+	mean_diff: 10.416666666666666	mse: 59791.666666666664	n_diff: 12.0
+reward:
+	mean_diff: 0.12083333333333335	mse: 0.1610416666666667	n_diff: 19.0
+
+Summary of log_sim_rl_norway_tram_10:
+bit_rate_prediction:
+	mean_diff: 14.583333333333334	mse: 89687.5	n_diff: 12.0
+reward:
+	mean_diff: -0.04895833333333333	mse: 0.22338541666666667	n_diff: 20.0
+
+Summary of log_sim_rl_norway_tram_11:
+bit_rate_prediction:
+	mean_diff: 33.333333333333336	mse: 55208.333333333336	n_diff: 12.0
+reward:
+	mean_diff: 0.04270833333333333	mse: 0.13682291666666668	n_diff: 14.0
+
+Summary of log_sim_rl_norway_tram_12:
+bit_rate_prediction:
+	mean_diff: 29.166666666666668	mse: 85104.16666666667	n_diff: 15.0
+reward:
+	mean_diff: 0.09270833333333332	mse: 0.1558854166666667	n_diff: 20.0
+
+Summary of log_sim_rl_norway_tram_13:
+bit_rate_prediction:
+	mean_diff: -7.291666666666667	mse: 90052.08333333333	n_diff: 17.0
+reward:
+	mean_diff: 0.10104166666666668	mse: 0.16692708333333336	n_diff: 23.0
+
+Summary of log_sim_rl_norway_tram_14:
+bit_rate_prediction:
+	mean_diff: -10.416666666666666	mse: 139687.5	n_diff: 18.0
+reward:
+	mean_diff: 0.02604166666666666	mse: 0.13817708333333334	n_diff: 23.0
+
+Summary of log_sim_rl_norway_tram_15:
+bit_rate_prediction:
+	mean_diff: 28.125	mse: 80156.25	n_diff: 13.0
+reward:
+	mean_diff: 0.018750000000000006	mse: 0.10968750000000001	n_diff: 14.0
+
+Summary of log_sim_rl_norway_tram_16:
+bit_rate_prediction:
+	mean_diff: 15.625	mse: 114531.25	n_diff: 20.0
+reward:
+	mean_diff: 0.13437500000000002	mse: 0.23265625	n_diff: 26.0
+
+Summary of log_sim_rl_norway_tram_17:
+bit_rate_prediction:
+	mean_diff: 19.791666666666668	mse: 126822.91666666667	n_diff: 18.0
+reward:
+	mean_diff: 0.10208333333333335	mse: 0.13947916666666668	n_diff: 20.0
+
+Summary of log_sim_rl_norway_tram_18:
+bit_rate_prediction:
+	mean_diff: 19.791666666666668	mse: 89322.91666666667	n_diff: 13.0
+reward:
+	mean_diff: 0.036458333333333336	mse: 0.19057291666666665	n_diff: 18.0
+
+Summary of log_sim_rl_norway_tram_19:
+bit_rate_prediction:
+	mean_diff: -3.125	mse: 233177.08333333334	n_diff: 21.0
+reward:
+	mean_diff: 0.0375	mse: 0.5272916666666667	n_diff: 27.0
+
+Summary of log_sim_rl_norway_tram_2:
+bit_rate_prediction:
+	mean_diff: 14.583333333333334	mse: 75833.33333333333	n_diff: 10.0
+reward:
+	mean_diff: 0.013541666666666669	mse: 0.10536458333333336	n_diff: 13.0
+
+Summary of log_sim_rl_norway_tram_20:
+bit_rate_prediction:
+	mean_diff: -3.125	mse: 132135.41666666666	n_diff: 16.0
+reward:
+	mean_diff: 0.08854166666666667	mse: 0.2550520833333334	n_diff: 23.0
+
+Summary of log_sim_rl_norway_tram_21:
+bit_rate_prediction:
+	mean_diff: 3.125	mse: 88697.91666666667	n_diff: 16.0
+reward:
+	mean_diff: 0.07187499999999998	mse: 0.1561979166666667	n_diff: 23.0
+
+Summary of log_sim_rl_norway_tram_22:
+bit_rate_prediction:
+	mean_diff: 15.625	mse: 97656.25	n_diff: 13.0
+reward:
+	mean_diff: 0.11562499999999999	mse: 0.16515625000000003	n_diff: 15.0
+
+Summary of log_sim_rl_norway_tram_23:
+bit_rate_prediction:
+	mean_diff: 29.166666666666668	mse: 93541.66666666667	n_diff: 14.0
+reward:
+	mean_diff: 0.08333333333333333	mse: 0.0691666666666667	n_diff: 16.0
+
+Summary of log_sim_rl_norway_tram_24:
+bit_rate_prediction:
+	mean_diff: 18.75	mse: 33750.0	n_diff: 8.0
+reward:
+	mean_diff: 0.065625	mse: 0.08015625000000003	n_diff: 13.0
+
+Summary of log_sim_rl_norway_tram_25:
+bit_rate_prediction:
+	mean_diff: 14.583333333333334	mse: 81250.0	n_diff: 16.0
+reward:
+	mean_diff: 0.04270833333333332	mse: 0.18578125	n_diff: 23.0
+
+Summary of log_sim_rl_norway_tram_26:
+bit_rate_prediction:
+	mean_diff: 10.416666666666666	mse: 59791.666666666664	n_diff: 12.0
+reward:
+	mean_diff: 0.027083333333333345	mse: 0.11041666666666668	n_diff: 16.0
+
+Summary of log_sim_rl_norway_tram_27:
+bit_rate_prediction:
+	mean_diff: 10.416666666666666	mse: 68229.16666666667	n_diff: 14.0
+reward:
+	mean_diff: 0.046875	mse: 0.19109375000000003	n_diff: 19.0
+
+Summary of log_sim_rl_norway_tram_28:
+bit_rate_prediction:
+	mean_diff: 19.791666666666668	mse: 106197.91666666667	n_diff: 11.0
+reward:
+	mean_diff: 0.07395833333333333	mse: 0.1661979166666667	n_diff: 14.0
+
+Summary of log_sim_rl_norway_tram_29:
+bit_rate_prediction:
+	mean_diff: 15.625	mse: 60156.25	n_diff: 11.0
+reward:
+	mean_diff: 0.0031249999999999924	mse: 0.052656249999999995	n_diff: 14.0
+
+Summary of log_sim_rl_norway_tram_3:
+bit_rate_prediction:
+	mean_diff: 33.333333333333336	mse: 80520.83333333333	n_diff: 15.0
+reward:
+	mean_diff: 0.08854166666666667	mse: 0.14567708333333337	n_diff: 17.0
+
+Summary of log_sim_rl_norway_tram_30:
+bit_rate_prediction:
+	mean_diff: 33.333333333333336	mse: 75833.33333333333	n_diff: 13.0
+reward:
+	mean_diff: 0.02291666666666668	mse: 0.10208333333333335	n_diff: 18.0
+
+Summary of log_sim_rl_norway_tram_31:
+bit_rate_prediction:
+	mean_diff: 5.208333333333333	mse: 84739.58333333333	n_diff: 19.0
+reward:
+	mean_diff: 0.023958333333333335	mse: 0.2211979166666667	n_diff: 30.0
+
+Summary of log_sim_rl_norway_tram_32:
+bit_rate_prediction:
+	mean_diff: 9.375	mse: 46406.25	n_diff: 11.0
+reward:
+	mean_diff: -0.018750000000000006	mse: 0.1096875	n_diff: 15.0
+
+Summary of log_sim_rl_norway_tram_33:
+bit_rate_prediction:
+	mean_diff: 28.125	mse: 90052.08333333333	n_diff: 17.0
+reward:
+	mean_diff: -0.028124999999999997	mse: 0.29963541666666665	n_diff: 25.0
+
+Summary of log_sim_rl_norway_tram_34:
+bit_rate_prediction:
+	mean_diff: 29.166666666666668	mse: 102708.33333333333	n_diff: 20.0
+reward:
+	mean_diff: 0.057291666666666664	mse: 0.2686979166666667	n_diff: 29.0
+
+Summary of log_sim_rl_norway_tram_35:
+bit_rate_prediction:
+	mean_diff: 65.625	mse: 97031.25	n_diff: 11.0
+reward:
+	mean_diff: -0.028125	mse: 0.08015625	n_diff: 14.0
+
+Summary of log_sim_rl_norway_tram_36:
+bit_rate_prediction:
+	mean_diff: 0.0	mse: 132708.33333333334	n_diff: 21.0
+reward:
+	mean_diff: 0.09583333333333333	mse: 0.19083333333333333	n_diff: 27.0
+
+Summary of log_sim_rl_norway_tram_37:
+bit_rate_prediction:
+	mean_diff: 16.666666666666668	mse: 124166.66666666667	n_diff: 24.0
+reward:
+	mean_diff: 0.19687500000000002	mse: 0.3361979166666667	n_diff: 31.0
+
+Summary of log_sim_rl_norway_tram_38:
+bit_rate_prediction:
+	mean_diff: 6.25	mse: 98125.0	n_diff: 14.0
+reward:
+	mean_diff: 0.004166666666666656	mse: 0.18395833333333336	n_diff: 19.0
+
+Summary of log_sim_rl_norway_tram_39:
+bit_rate_prediction:
+	mean_diff: 7.291666666666667	mse: 153697.91666666666	n_diff: 25.0
+reward:
+	mean_diff: 0.11666666666666668	mse: 0.32906250000000004	n_diff: 30.0
+
+Summary of log_sim_rl_norway_tram_4:
+bit_rate_prediction:
+	mean_diff: 33.333333333333336	mse: 46770.833333333336	n_diff: 7.0
+reward:
+	mean_diff: -0.03333333333333334	mse: 0.04677083333333334	n_diff: 10.0
+
+Summary of log_sim_rl_norway_tram_40:
+bit_rate_prediction:
+	mean_diff: 29.166666666666668	mse: 68229.16666666667	n_diff: 14.0
+reward:
+	mean_diff: 0.05520833333333333	mse: 0.13151041666666666	n_diff: 19.0
+
+Summary of log_sim_rl_norway_tram_41:
+bit_rate_prediction:
+	mean_diff: 20.833333333333332	mse: 144895.83333333334	n_diff: 27.0
+reward:
+	mean_diff: 0.17604166666666665	mse: 0.3263020833333334	n_diff: 31.0
+
+Summary of log_sim_rl_norway_tram_42:
+bit_rate_prediction:
+	mean_diff: -59.375	mse: 105677.08333333333	n_diff: 12.0
+reward:
+	mean_diff: -0.027083333333333345	mse: 0.143125	n_diff: 16.0
+
+Summary of log_sim_rl_norway_tram_43:
+bit_rate_prediction:
+	mean_diff: 2.0833333333333335	mse: 155520.83333333334	n_diff: 20.0
+reward:
+	mean_diff: 0.05729166666666668	mse: 0.36609374999999994	n_diff: 28.0
+
+Summary of log_sim_rl_norway_tram_44:
+bit_rate_prediction:
+	mean_diff: 2.0833333333333335	mse: 140208.33333333334	n_diff: 19.0
+reward:
+	mean_diff: 0.036458333333333336	mse: 0.29682291666666666	n_diff: 27.0
+
+Summary of log_sim_rl_norway_tram_45:
+bit_rate_prediction:
+	mean_diff: 10.416666666666666	mse: 109479.16666666667	n_diff: 13.0
+reward:
+	mean_diff: 0.15833333333333335	mse: 0.2032291666666667	n_diff: 17.0
+
+Summary of log_sim_rl_norway_tram_46:
+bit_rate_prediction:
+	mean_diff: 14.583333333333334	mse: 55208.333333333336	n_diff: 9.0
+reward:
+	mean_diff: -0.00416666666666667	mse: 0.10729166666666669	n_diff: 14.0
+
+Summary of log_sim_rl_norway_tram_47:
+bit_rate_prediction:
+	mean_diff: 10.416666666666666	mse: 135729.16666666666	n_diff: 21.0
+reward:
+	mean_diff: 0.04687500000000001	mse: 0.27734375000000006	n_diff: 23.0
+
+Summary of log_sim_rl_norway_tram_48:
+bit_rate_prediction:
+	mean_diff: 15.625	mse: 93906.25	n_diff: 13.0
+reward:
+	mean_diff: 0.040625	mse: 0.09390625000000001	n_diff: 19.0
+
+Summary of log_sim_rl_norway_tram_49:
+bit_rate_prediction:
+	mean_diff: -8.333333333333334	mse: 76666.66666666667	n_diff: 13.0
+reward:
+	mean_diff: 0.05520833333333333	mse: 0.17369791666666667	n_diff: 19.0
+
+Summary of log_sim_rl_norway_tram_5:
+bit_rate_prediction:
+	mean_diff: 9.375	mse: 71718.75	n_diff: 14.0
+reward:
+	mean_diff: -0.01875	mse: 0.135	n_diff: 17.0
+
+Summary of log_sim_rl_norway_tram_50:
+bit_rate_prediction:
+	mean_diff: 6.25	mse: 89687.5	n_diff: 18.0
+reward:
+	mean_diff: 0.09791666666666667	mse: 0.3071875	n_diff: 25.0
+
+Summary of log_sim_rl_norway_tram_51:
+bit_rate_prediction:
+	mean_diff: 15.625	mse: 160468.75	n_diff: 19.0
+reward:
+	mean_diff: 0.05937499999999999	mse: 0.3123437500000001	n_diff: 26.0
+
+Summary of log_sim_rl_norway_tram_52:
+bit_rate_prediction:
+	mean_diff: 19.791666666666668	mse: 80885.41666666667	n_diff: 14.0
+reward:
+	mean_diff: -0.0010416666666666814	mse: 0.14088541666666668	n_diff: 19.0
+
+Summary of log_sim_rl_norway_tram_53:
+bit_rate_prediction:
+	mean_diff: 52.083333333333336	mse: 75833.33333333333	n_diff: 7.0
+reward:
+	mean_diff: -0.014583333333333337	mse: 0.07583333333333335	n_diff: 10.0
+
+Summary of log_sim_rl_norway_tram_54:
+bit_rate_prediction:
+	mean_diff: -65.625	mse: 140260.41666666666	n_diff: 13.0
+reward:
+	mean_diff: 0.04166666666666666	mse: 0.25333333333333335	n_diff: 15.0
+
+Summary of log_sim_rl_norway_tram_55:
+bit_rate_prediction:
+	mean_diff: 14.583333333333334	mse: 245937.5	n_diff: 20.0
+reward:
+	mean_diff: 0.05937499999999998	mse: 0.30067708333333343	n_diff: 26.0
+
+Summary of log_sim_rl_norway_tram_56:
+bit_rate_prediction:
+	mean_diff: 3.125	mse: 122447.91666666667	n_diff: 18.0
+reward:
+	mean_diff: 0.04551885510161482	mse: 0.2748357744515075	n_diff: 23.0
+
+Summary of log_sim_rl_norway_tram_6:
+bit_rate_prediction:
+	mean_diff: 34.375	mse: 119218.75	n_diff: 19.0
+reward:
+	mean_diff: 0.06875	mse: 0.27437500000000004	n_diff: 24.0
+
+Summary of log_sim_rl_norway_tram_7:
+bit_rate_prediction:
+	mean_diff: 10.416666666666666	mse: 94270.83333333333	n_diff: 18.0
+reward:
+	mean_diff: 0.13125	mse: 0.1786458333333333	n_diff: 26.0
+
+Summary of log_sim_rl_norway_tram_8:
+bit_rate_prediction:
+	mean_diff: 29.166666666666668	mse: 101041.66666666667	n_diff: 12.0
+reward:
+	mean_diff: 0.017708333333333336	mse: 0.09682291666666669	n_diff: 13.0
+
+Summary of log_sim_rl_norway_tram_9:
+bit_rate_prediction:
+	mean_diff: 5.208333333333333	mse: 77031.25	n_diff: 9.0
+reward:
+	mean_diff: -0.0375	mse: 0.16156250000000005	n_diff: 13.0
+
+---***---
+Overall Summary:
+---mean---
+bit_rate_prediction:
+	mean_diff: -51.43779342723004	mse: 200780.51643192492	n_diff: 18.316901408450704	
+reward:
+	mean_diff: 0.007880985914497466	mse: 0.4188835528971039	n_diff: 23.450704225352112	
+---max---
+bit_rate_prediction:
+	mean_diff: 65.625	mse: 710885.4166666666	n_diff: 33.0	
+reward:
+	mean_diff: 0.7424759376646256	mse: 9.30910939889973	n_diff: 39.0	
+---min---
+bit_rate_prediction:
+	mean_diff: -470.8333333333333	mse: 33750.0	n_diff: 7.0	
+reward:
+	mean_diff: -0.5416666666666666	mse: 0.04677083333333334	n_diff: 10.0	
+---median---
+bit_rate_prediction:
+	mean_diff: 6.25	mse: 135468.75	n_diff: 18.0	
+reward:
+	mean_diff: 0.035416666666666666	mse: 0.2753345538924204	n_diff: 23.0	
