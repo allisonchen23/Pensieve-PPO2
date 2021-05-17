@@ -21,7 +21,7 @@ TRAIN_EPOCH = 100000 # 1000000
 MODEL_SAVE_INTERVAL = 5000 # 300
 RANDOM_SEED = 42
 RAND_RANGE = 10000
-SUMMARY_DIR = './results'
+# SUMMARY_DIR = './results'
 MODEL_DIR = './models'
 TRAIN_TRACES = './cooked_traces/'
 # MODEL_ARCH = 'ffd'
@@ -30,8 +30,8 @@ TRAIN_TRACES = './cooked_traces/'
 # LOG_FILE = './results/{}_log'.format(MODEL_ARCH)
 PPO_TRAINING_EPO = 10
 # create result directory
-if not os.path.exists(SUMMARY_DIR):
-    os.makedirs(SUMMARY_DIR)
+if not os.path.exists(settings.SUMMARY_DIR):
+    os.makedirs(settings.SUMMARY_DIR)
 
 NN_MODEL = None
 
@@ -50,7 +50,7 @@ def testing(epoch, nn_model, log_file):
     test_log_files = os.listdir(settings.TEST_LOG_FOLDER)
     for test_log_file in test_log_files:
         reward = []
-        with open(settings.TEST_LOG_FOLDER + test_log_file, 'rb') as f:
+        with open(settings.TEST_LOG_FOLDER + '/' + test_log_file, 'rb') as f:
             for line in f:
                 parse = line.split()
                 try:
@@ -83,6 +83,10 @@ def central_agent(net_params_queues, exp_queues):
 
     assert len(net_params_queues) == NUM_AGENTS
     assert len(exp_queues) == NUM_AGENTS
+
+    if not os.path.exists(settings.RESULTS_DIR):
+        os.makedirs(settings.RESULTS_DIR)
+
     with tf.Session() as sess, open(settings.LOG_FILE + '_test.txt', 'w') as test_log_file:
 
         actor = network.Network(sess,
@@ -124,15 +128,15 @@ def central_agent(net_params_queues, exp_queues):
             if epoch % MODEL_SAVE_INTERVAL == 0:
                 print("Checkpoint at epoch {} / {}".format(epoch, TRAIN_EPOCH))
                 # Save the neural net parameters to disk.
-                save_path = saver.save(sess, SUMMARY_DIR + "/nn_model_ep_" +
+                save_path = saver.save(sess, settings.SUMMARY_DIR + "/nn_model_ep_" +
                                        str(epoch) + ".ckpt")
                 testing(epoch,
-                    SUMMARY_DIR + "/nn_model_ep_" + str(epoch) + ".ckpt",
+                    settings.SUMMARY_DIR + "/nn_model_ep_" + str(epoch) + ".ckpt",
                     test_log_file)
 
 def agent(agent_id, net_params_queue, exp_queue):
     env = ABREnv(agent_id)
-    with tf.Session() as sess, open(SUMMARY_DIR + '/log_agent_' + str(agent_id), 'w') as log_file:
+    with tf.Session() as sess, open(settings.SUMMARY_DIR + '/log_agent_' + str(agent_id), 'w') as log_file:
         actor = network.Network(sess,
                                 state_dim=S_DIM, action_dim=A_DIM,
                                 learning_rate=ACTOR_LR_RATE,

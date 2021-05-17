@@ -132,25 +132,10 @@ def compare_directories(base_dirpath,
 
 
 if __name__ == "__main__":
-
+    BASE_DIR = './ffd_1_test_results'
+    COMP_DIR = './ffd_2_test_results'
     compare_directories(
-        ORIGINAL_RESULTS_DIR,
-        REPEAT_DENSE_RESULTS_DIR,
-        log_path=os.path.join(SUMMARY_DIR, 'original_repeat.log'),
-        compare_cols=['bit_rate_prediction', 'reward'])
-    compare_directories(
-        NORWAY_RESULTS_DIR,
-        REPEAT_DENSE_RESULTS_DIR,
-        log_path=os.path.join(SUMMARY_DIR, 'norway_repeat.log'),
-        compare_cols=['bit_rate_prediction', 'reward'])
-
-    compare_directories(
-        ORIGINAL_RESULTS_DIR,
-        KEEP_SCALAR_RESULTS_DIR,
-        log_path=os.path.join(SUMMARY_DIR, 'original_scalar.log'),
-        compare_cols=['bit_rate_prediction', 'reward'])
-    compare_directories(
-        NORWAY_RESULTS_DIR,
-        KEEP_SCALAR_RESULTS_DIR,
-        log_path=os.path.join(SUMMARY_DIR, 'norway_scalar.log'),
+        BASE_DIR,
+        COMP_DIR,
+        log_path=os.path.join(SUMMARY_DIR, 'ffd_1_ffd_2.log'),
         compare_cols=['bit_rate_prediction', 'reward'])
