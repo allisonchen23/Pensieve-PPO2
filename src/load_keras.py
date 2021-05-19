@@ -1,4 +1,5 @@
-import a3c_keras
+import ppo2_keras_ffd as network
+import os
 import tensorflow as tf
 from tensorflow.python.tools import inspect_checkpoint
 
@@ -11,6 +12,112 @@ CRITIC_LR_RATE = 0.001
 # NN_MODEL = 'test/models/pretrain_linear_reward.ckpt'
 NN_MODEL = 'sim/results/pretrain_linear_reward.ckpt'
 KERAS_MODEL_PATH = 'keras_models/keras_model.h5'
+
+def load_ckpt_store_h5(actor,
+                       ckpt_path,
+                       save_path=None,
+                       csv_save_dir=None,
+                       ckpt_layer_names=[
+                        'actor/FullyConnected',
+                        'actor/FullyConnected_1',
+                        'actor/FullyConnected_2',
+                        'actor/FullyConnected_3',
+                        'actor/FullyConnected_4'
+                        ],
+                       keras_layer_names = [
+                        'dense_1',
+                        'dense_2',
+                        'dense_3',
+                        'dense_4',
+                        'dense_5'
+                        ]):
+    '''
+    Restore weights of Keras model from CKPT file and save as h5 file
+    Arg(s):
+        ckpt_path : str
+            path to ckpt file
+        save_path : None or str
+            path to save h5 model in. If None, stores in same path as ckpt_path, but with .h5 extension
+        csv_save_dir : None or str
+            if None, do not save weights as CSV. Otherwise save weights as CSV files in this directory
+        ckpt_layer_names : list[str]
+            list of names of ckpt layers (not including '/W' or '/b' for weights and biases)
+        keras_layer_names : list[str]
+            list of names of corresponding h5 layers
+    Returns:
+        None
+    '''
+
+    # Checks for paths
+    if save_path is None:
+        save_path = ckpt_path.replace('.ckpt', '.h5')
+
+    if csv_save_dir is not None:
+        # Clear directory if it exists
+        if os.path.isdir(csv_save_dir):
+            os.system("rm -rf {}".format(csv_save_dir))
+        os.makedirs(csv_save_dir)
+
+    assert len(ckpt_layer_names) == len(keras_layer_names)
+
+    # Obtain reader to understand ckpt checkpoints
+    reader = tf.train.NewCheckpointReader(ckpt_path)
+
+    for layer_idx, (ckpt_layer_name, keras_layer_name) in enumerate(zip(ckpt_layer_names, keras_layer_names)):
+        # Obtain old weights (to check shape later)
+        old_weights = actor.model.get_layer(keras_layer_name).get_weights()
+
+        # Extract weight values from ckpt layers and store into keras layers
+        weights = reader.get_tensor(ckpt_layer_name + '/W')
+
+        # Assume that one dimension is a 1 and can be squeezed to match
+        if old_weights[0].shape != weights.shape:
+            weights = np.squeeze(weights)
+            assert old_weights[0].shape == weights.shape
+
+        biases = reader.get_tensor(ckpt_layer_name + '/b')
+
+
+        actor.model.get_layer(keras_layer_name).set_weights([weights, biases])
+
+        new_weights = actor.model.get_layer(keras_layer_name).get_weights()
+
+        # Sanity check
+        for old_weight, new_weight in zip(old_weights, new_weights):
+            assert not (old_weight == new_weight).all()
+
+        # Save to CSV, if desired
+        if csv_save_dir is not None:
+            '''
+            Save weights
+            '''
+
+            # Check if 3d tensor
+            if 2 < len(weights.shape):
+                # iterate through each kernel
+                for kernel_idx in range(weights.shape[0]):
+                    kernel_weights = weights[kernel_idx]
+                    np.savetxt(
+                        os.path.join(csv_save_dir, "weights_layer{}_kernel{}.csv".format(layer_idx, kernel_idx)),
+                        kernel_weights,
+                        delimiter=",")
+            else:
+                np.savetxt(
+                    os.path.join(csv_save_dir, "weights_layer{}.csv".format(layer_idx)),
+                    weights,
+                    delimiter=",")
+
+            '''
+            Save biases
+            '''
+            np.savetxt(
+                os.path.join(csv_save_dir, "bias_layer{}.csv".format(layer_idx)),
+                    biases,
+                    delimiter=",")
+
+
+    print("Saving model to {}".format(save_path))
+    actor.model.save(save_path)
 
 def load_model_to_keras(ckpt_path=NN_MODEL,
                         h5_save_path=None,
@@ -65,7 +172,7 @@ def load_model_to_keras(ckpt_path=NN_MODEL,
     '''
     with tf.Session() as sess:
 
-        actor = a3c_keras.ActorNetwork(
+        actor = network.Network(
             sess=sess,
             state_dim=[state_info, state_len],
             action_dim=actor_dim,
@@ -76,7 +183,7 @@ def load_model_to_keras(ckpt_path=NN_MODEL,
 
         # restore neural net parameters
         if ckpt_path is not None:  # nn_model is the path to file
-            actor.load_ckpt_store_h5(
+            load_ckpt_store_h5(actor,
                 ckpt_path=ckpt_path,
                 save_path=h5_save_path,
                 csv_save_dir=csv_save_dir,
@@ -95,7 +202,7 @@ def load_actor(h5_path,
                actor_lr=ACTOR_LR_RATE):
     with tf.Session() as sess:
 
-        actor = a3c_keras.ActorNetwork(
+        actor = network.Network(
             sess=sess,
             state_dim=[state_info, state_len],
             action_dim=actor_dim,
@@ -133,7 +240,7 @@ def save_actor_end2(h5_path,
                    save_csv_dir=None):
     with tf.Session() as sess:
 
-        actor = a3c_keras.ActorNetwork(
+        actor = network.Network(
             sess=sess,
             state_dim=[state_info, state_len],
             action_dim=actor_dim,
@@ -153,10 +260,11 @@ if __name__=="__main__":
     '''
     Load entire .ckpt model into Keras
     '''
-    # actor = load_model_to_keras(
-    #     csv_save_dir="keras_models/pensieve_csv",
-    #     h5_save_path='keras_models/pensieve.h5'
-    # )
+    actor = load_model_to_keras(
+        ckpt_path="results/ffd_1_05172021/summary/nn_model_ep_95000.ckpt",
+        csv_save_dir="keras_models/pensieve_csv",
+        h5_save_path='keras_models/pensieve.h5'
+    )
 
     # actor = load_actor(KERAS_MODEL_PATH)
     # actor_end = save_actor_end(
@@ -164,7 +272,7 @@ if __name__=="__main__":
     #     save_h5_path='keras_models/pensieve_end.h5',
     #     save_csv_dir='keras_models/pensieve_end_csv')
 
-    save_actor_end2(
-        h5_path='keras_models/pensieve.h5',
-        save_csv_dir="keras_models/pensieve_csv",
-        save_h5_path='keras_models/pensieve.h5')
+    # save_actor_end2(
+    #     h5_path='keras_models/pensieve.h5',
+    #     save_csv_dir="keras_models/pensieve_csv",
+    #     save_h5_path='keras_models/pensieve.h5')
