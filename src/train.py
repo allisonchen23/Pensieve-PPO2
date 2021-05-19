@@ -80,6 +80,11 @@ def testing(epoch, nn_model, log_file):
     return rewards_mean
 
 def central_agent(net_params_queues, exp_queues):
+    # clean up the summary results folder
+    os.system('rm -r ' + settings.SUMMARY_DIR)
+
+    if not os.path.exists(settings.SUMMARY_DIR):
+        os.makedirs(settings.SUMMARY_DIR)
 
     assert len(net_params_queues) == NUM_AGENTS
     assert len(exp_queues) == NUM_AGENTS
@@ -204,6 +209,10 @@ def main():
 
     # wait unit training is done
     coordinator.join()
+
+    # Not sure if this will fix the hanging at the end
+    for i in range(NUM_AGENTS):
+        agents[i].join()
 
 
 if __name__ == '__main__':
