@@ -24,25 +24,27 @@ class Network():
         with tf.variable_scope('actor'):
             assert n_dense > 0
             # Concatenate inputs into 1 vector
-            keras_inputs = Input(tensor=inputs)
+            # keras_inputs = Input(tensor=inputs)
             # intermediate_inputs =
-            print(keras_inputs.shape)
+            # print(keras_inputs.shape)
             input_vector = []
-            input_vector.append(Lambda(lambda x: x[:, 0:1, -1])(keras_inputs))
-            input_vector.append(Lambda(lambda x: x[:, 1:2, -1])(keras_inputs))
-            input_vector.append(tf.squeeze(keras_inputs[:, 2:3, :], axis=1))
-            input_vector.append(tf.squeeze(keras_inputs[:, 3:4, :], axis=1))
-            input_vector.append(tf.squeeze(keras_inputs[:, 4:5, :self.a_dim], axis=1))
-            input_vector.append(keras_inputs[:, 5:6, -1])
-            # input_vector.append(keras_inputs[:, 0:1, -1])
-            # input_vector.append(keras_inputs[:, 1:2, -1])
+            # input_vector.append(Lambda(lambda x: x[:, 0:1, -1])(keras_inputs))
+            # input_vector.append(Lambda(lambda x: x[:, 1:2, -1])(keras_inputs))
             # input_vector.append(tf.squeeze(keras_inputs[:, 2:3, :], axis=1))
             # input_vector.append(tf.squeeze(keras_inputs[:, 3:4, :], axis=1))
             # input_vector.append(tf.squeeze(keras_inputs[:, 4:5, :self.a_dim], axis=1))
-            # input_vector.append(keras_inputs[:, 5:6, -1])
+            input_vector.append(inputs[:, 5:6, -1])
+            input_vector.append(inputs[:, 0:1, -1])
+            input_vector.append(inputs[:, 1:2, -1])
+            input_vector.append(tf.squeeze(inputs[:, 2:3, :], axis=1))
+            input_vector.append(tf.squeeze(inputs[:, 3:4, :], axis=1))
+            input_vector.append(tf.squeeze(inputs[:, 4:5, :self.a_dim], axis=1))
+            input_vector.append(inputs[:, 5:6, -1])
             input_vector = concatenate(input_vector, axis=-1)
+            keras_inputs = Input(tensor=input_vector)
 
-            layer = input_vector
+            # layer = input_vector
+            layer = keras_inputs
             for i in range(n_dense):
                 layer = Dense(settings.FEATURE_NUM,
                     activation='relu',
@@ -57,12 +59,19 @@ class Network():
                 activation='relu',
                 kernel_initializer='truncated_normal')(base_dense)
 
-            pi = tflearn.fully_connected(net, self.a_dim, activation='softmax')
-            value = tflearn.fully_connected(net, 1, activation='linear')
+            # pi = tflearn.fully_connected(net, self.a_dim, activation='softmax')
+            # value = tflearn.fully_connected(net, 1, activation='linear')
+            pi = Dense(self.a_dim,
+                activation='relu',
+                kernel_initializer='truncated_normal')(net)
+            value = Dense(1,
+                activation='linear',
+                kernel_initializer='truncated_normal')(net)
 
             outputs = concatenate([pi, value], axis=-1)
 
-            model = Model(inputs=input_vector, outputs=outputs)
+            model = Model(inputs=keras_inputs, outputs=[pi, value])
+            model.summary()
             return pi, value, model
 
     def get_network_params(self):
