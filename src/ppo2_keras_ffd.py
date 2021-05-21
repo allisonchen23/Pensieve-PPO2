@@ -33,7 +33,7 @@ class Network():
             # input_vector.append(tf.squeeze(keras_inputs[:, 2:3, :], axis=1))
             # input_vector.append(tf.squeeze(keras_inputs[:, 3:4, :], axis=1))
             # input_vector.append(tf.squeeze(keras_inputs[:, 4:5, :self.a_dim], axis=1))
-            input_vector.append(inputs[:, 5:6, -1])
+            # input_vector.append(inputs[:, 5:6, -1])
             input_vector.append(inputs[:, 0:1, -1])
             input_vector.append(inputs[:, 1:2, -1])
             input_vector.append(tf.squeeze(inputs[:, 2:3, :], axis=1))
@@ -55,7 +55,7 @@ class Network():
                 kernel_initializer='truncated_normal')(layer)
 
             # Original Architecture
-            net = Dense(settings.FEATURE_NUM,
+            net = Dense(128,
                 activation='relu',
                 kernel_initializer='truncated_normal')(base_dense)
 
@@ -71,7 +71,6 @@ class Network():
             outputs = concatenate([pi, value], axis=-1)
 
             model = Model(inputs=keras_inputs, outputs=[pi, value])
-            model.summary()
             return pi, value, model
 
     def get_network_params(self):

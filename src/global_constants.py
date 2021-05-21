@@ -1,6 +1,6 @@
 import os
 
-FEATURE_NUM                     = 64 #128
+FEATURE_NUM                     = 64
 N_DENSE_LAYERS                  = 3
 MODEL_ARCH                      = 'ffd_{}_64'.format(N_DENSE_LAYERS)
 RESULTS_DIR                     = os.path.join('results', MODEL_ARCH)

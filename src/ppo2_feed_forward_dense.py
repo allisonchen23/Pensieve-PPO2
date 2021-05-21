@@ -35,7 +35,7 @@ class Network():
 
             # Original Architecture
             net = tflearn.fully_connected(
-                base_dense, settings.FEATURE_NUM, activation='relu')
+                base_dense, 128, activation='relu')
 
             pi = tflearn.fully_connected(net, self.a_dim, activation='softmax')
             value = tflearn.fully_connected(net, 1, activation='linear')
