@@ -1,6 +1,8 @@
 import ppo2_keras_ffd as network
+import global_constants as settings
 import os
 import tensorflow as tf
+import numpy as np
 from tensorflow.python.tools import inspect_checkpoint
 
 # Taken from sim/agent.py
@@ -65,11 +67,13 @@ def load_ckpt_store_h5(actor,
 
     for layer_idx, (ckpt_layer_name, keras_layer_name) in enumerate(zip(ckpt_layer_names, keras_layer_names)):
         # Obtain old weights (to check shape later)
+        print("Old layer: {}\nNew Layer: {}".format(ckpt_layer_name, keras_layer_name))
         old_weights = actor.model.get_layer(keras_layer_name).get_weights()
 
         # Extract weight values from ckpt layers and store into keras layers
         weights = reader.get_tensor(ckpt_layer_name + '/W')
 
+        print("keras weights shape: {} ckpt weight shape: {}".format(old_weights[0].shape, weights.shape))
         # Assume that one dimension is a 1 and can be squeezed to match
         if old_weights[0].shape != weights.shape:
             weights = np.squeeze(weights)
@@ -176,7 +180,8 @@ def load_model_to_keras(ckpt_path=NN_MODEL,
             sess=sess,
             state_dim=[state_info, state_len],
             action_dim=actor_dim,
-            learning_rate=actor_lr
+            learning_rate=actor_lr,
+            n_dense=settings.N_DENSE_LAYERS
         )
         sess.run(tf.global_variables_initializer())
         saver = tf.train.Saver()  # save neural net parameters
@@ -206,7 +211,8 @@ def load_actor(h5_path,
             sess=sess,
             state_dim=[state_info, state_len],
             action_dim=actor_dim,
-            learning_rate=actor_lr
+            learning_rate=actor_lr,
+            n_dense=settings.N_DENSE_LAYERS
         )
         sess.run(tf.global_variables_initializer())
         saver = tf.train.Saver()  # save neural net parameters
@@ -255,15 +261,36 @@ def save_actor_end2(h5_path,
         save_csv_dir=save_csv_dir)
         return actor_end
 
+def get_fc_layer_names():
+    '''
+    From the hyperparameter settings.N_DENSE_LAYER, extract the number of layers
+    Return [layer_names_ckpt], [layer_names_keras]
+
+    '''
+    n_dense = settings.N_DENSE_LAYERS + 4
+    ckpt_layer_names = ['actor/FullyConnected']
+    keras_layer_names = []
+    for i in range(1, n_dense + 1):
+        if i < n_dense:
+            ckpt_layer_names.append('actor/FullyConnected_{}'.format(i))
+        keras_layer_names.append('dense_{}'.format(i))
+    return ckpt_layer_names, keras_layer_names
+
+
 if __name__=="__main__":
 
     '''
     Load entire .ckpt model into Keras
     '''
+    # Obtain appropriate layer names depending on architecture
+    ckpt_layer_names, keras_layer_names = get_fc_layer_names()
+    print(ckpt_layer_names, keras_layer_names)
     actor = load_model_to_keras(
-        ckpt_path="results/ffd_1_05172021/summary/nn_model_ep_95000.ckpt",
-        csv_save_dir="keras_models/pensieve_csv",
-        h5_save_path='keras_models/pensieve.h5'
+        ckpt_path="results/ffd_3_64_05192021/summary/nn_model_ep_75000.ckpt",
+        csv_save_dir="keras_models/{}/pensieve_{}.csv".format(settings.MODEL_ARCH, settings.MODEL_ARCH),
+        h5_save_path='keras_models/{}/pensieve_{}.h5'.format(settings.MODEL_ARCH, settings.MODEL_ARCH),
+        ckpt_layer_names=ckpt_layer_names,
+        keras_layer_names=keras_layer_names
     )
 
     # actor = load_actor(KERAS_MODEL_PATH)

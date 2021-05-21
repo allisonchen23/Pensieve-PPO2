@@ -29,11 +29,14 @@ TRAIN_TRACES = './cooked_traces/'
 # TEST_LOG_FOLDER = './{}_test_results/'.format(MODEL_ARCH)
 # LOG_FILE = './results/{}_log'.format(MODEL_ARCH)
 PPO_TRAINING_EPO = 10
-# create result directory
-if not os.path.exists(settings.SUMMARY_DIR):
-    os.makedirs(settings.SUMMARY_DIR)
+
 
 NN_MODEL = None
+# clean up the summary results folder
+os.system('rm -r ' + settings.SUMMARY_DIR)
+
+if not os.path.exists(settings.SUMMARY_DIR):
+    os.makedirs(settings.SUMMARY_DIR)
 
 def testing(epoch, nn_model, log_file):
     # clean up the test results folder
@@ -80,12 +83,6 @@ def testing(epoch, nn_model, log_file):
     return rewards_mean
 
 def central_agent(net_params_queues, exp_queues):
-    # clean up the summary results folder
-    os.system('rm -r ' + settings.SUMMARY_DIR)
-
-    if not os.path.exists(settings.SUMMARY_DIR):
-        os.makedirs(settings.SUMMARY_DIR)
-
     assert len(net_params_queues) == NUM_AGENTS
     assert len(exp_queues) == NUM_AGENTS
 
