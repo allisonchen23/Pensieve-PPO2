@@ -23,17 +23,9 @@ class Network():
     def CreateNetwork(self, inputs, n_dense=1):
         with tf.variable_scope('actor'):
             assert n_dense > 0
+
             # Concatenate inputs into 1 vector
-            # keras_inputs = Input(tensor=inputs)
-            # intermediate_inputs =
-            # print(keras_inputs.shape)
             input_vector = []
-            # input_vector.append(Lambda(lambda x: x[:, 0:1, -1])(keras_inputs))
-            # input_vector.append(Lambda(lambda x: x[:, 1:2, -1])(keras_inputs))
-            # input_vector.append(tf.squeeze(keras_inputs[:, 2:3, :], axis=1))
-            # input_vector.append(tf.squeeze(keras_inputs[:, 3:4, :], axis=1))
-            # input_vector.append(tf.squeeze(keras_inputs[:, 4:5, :self.a_dim], axis=1))
-            # input_vector.append(inputs[:, 5:6, -1])
             input_vector.append(inputs[:, 0:1, -1])
             input_vector.append(inputs[:, 1:2, -1])
             input_vector.append(tf.squeeze(inputs[:, 2:3, :], axis=1))
