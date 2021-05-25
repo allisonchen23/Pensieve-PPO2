@@ -35,7 +35,7 @@ class Network():
 
             # Original Architecture
             net = tflearn.fully_connected(
-                base_dense, 128, activation='relu')
+                base_dense, settings.FEATURE_NUM, activation='relu')
 
             pi = tflearn.fully_connected(net, self.a_dim, activation='softmax')
             value = tflearn.fully_connected(net, 1, activation='linear')
@@ -94,10 +94,10 @@ class Network():
         self.optimize = tf.train.AdamOptimizer(self.lr_rate).minimize(self.loss)
 
     def predict(self, input):
-        action = self.sess.run(self.real_out, feed_dict={
+        action, val = self.sess.run([self.real_out, self.val], feed_dict={
             self.inputs: input
         })
-        return action[0]
+        return action[0], val[0][0]
 
     def get_entropy(self, step):
         if step < 20000:

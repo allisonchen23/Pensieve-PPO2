@@ -156,7 +156,7 @@ def agent(agent_id, net_params_queue, exp_queue):
             for step in range(TRAIN_SEQ_LEN):
                 s_batch.append(obs)
 
-                action_prob = actor.predict(
+                action_prob, scalar_val = actor.predict(
                     np.reshape(obs, (1, S_DIM[0], S_DIM[1])))
 
                 action_cumsum = np.cumsum(action_prob)

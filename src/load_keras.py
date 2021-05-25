@@ -286,20 +286,9 @@ if __name__=="__main__":
     ckpt_layer_names, keras_layer_names = get_fc_layer_names()
     print(ckpt_layer_names, keras_layer_names)
     actor = load_model_to_keras(
-        ckpt_path="results/ffd_3_64_05192021/summary/nn_model_ep_75000.ckpt",
-        csv_save_dir="keras_models/{}/pensieve_{}.csv".format(settings.MODEL_ARCH, settings.MODEL_ARCH),
-        h5_save_path='keras_models/{}/pensieve_{}.h5'.format(settings.MODEL_ARCH, settings.MODEL_ARCH),
+        ckpt_path="results/ffd_3_64_05202021/summary/nn_model_ep_75000.ckpt",
+        csv_save_dir="keras_models/TEST/{}/pensieve_{}.csv".format(settings.MODEL_ARCH, settings.MODEL_ARCH),
+        h5_save_path='keras_models/TEST/{}/pensieve_{}.h5'.format(settings.MODEL_ARCH, settings.MODEL_ARCH),
         ckpt_layer_names=ckpt_layer_names,
         keras_layer_names=keras_layer_names
     )
-
-    # actor = load_actor(KERAS_MODEL_PATH)
-    # actor_end = save_actor_end(
-    #     actor=actor,
-    #     save_h5_path='keras_models/pensieve_end.h5',
-    #     save_csv_dir='keras_models/pensieve_end_csv')
-
-    # save_actor_end2(
-    #     h5_path='keras_models/pensieve.h5',
-    #     save_csv_dir="keras_models/pensieve_csv",
-    #     save_h5_path='keras_models/pensieve.h5')

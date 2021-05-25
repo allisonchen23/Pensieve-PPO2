@@ -25,16 +25,17 @@ class Network():
             assert n_dense > 0
 
             # Concatenate inputs into 1 vector
-            input_vector = []
-            input_vector.append(inputs[:, 0:1, -1])
-            input_vector.append(inputs[:, 1:2, -1])
-            input_vector.append(tf.squeeze(inputs[:, 2:3, :], axis=1))
-            input_vector.append(tf.squeeze(inputs[:, 3:4, :], axis=1))
-            input_vector.append(tf.squeeze(inputs[:, 4:5, :self.a_dim], axis=1))
-            input_vector.append(inputs[:, 5:6, -1])
-            input_vector = concatenate(input_vector, axis=-1)
-            keras_inputs = Input(tensor=input_vector)
-
+            # input_vector = []
+            # input_vector.append(inputs[:, 0:1, -1])
+            # input_vector.append(inputs[:, 1:2, -1])
+            # input_vector.append(tf.squeeze(inputs[:, 2:3, :], axis=1))
+            # input_vector.append(tf.squeeze(inputs[:, 3:4, :], axis=1))
+            # input_vector.append(tf.squeeze(inputs[:, 4:5, :self.a_dim], axis=1))
+            # input_vector.append(inputs[:, 5:6, -1])
+            # input_vector = concatenate(input_vector, axis=-1)
+            # keras_inputs = Input(tensor=input_vector)
+            print(len(inputs.shape))
+            keras_inputs = Input(tensor=inputs)
             # layer = input_vector
             layer = keras_inputs
             for i in range(n_dense):
@@ -47,7 +48,7 @@ class Network():
                 kernel_initializer='truncated_normal')(layer)
 
             # Original Architecture
-            net = Dense(128,
+            net = Dense(settings.FEATURE_NUM,
                 activation='relu',
                 kernel_initializer='truncated_normal')(base_dense)
 
@@ -81,7 +82,8 @@ class Network():
         self.lr_rate = learning_rate
         self.sess = sess
         self.R = tf.placeholder(tf.float32, [None, 1])
-        self.inputs = tf.placeholder(tf.float32, [None, self.s_dim[0], self.s_dim[1]])
+        # self.inputs = tf.placeholder(tf.float32, [None, self.s_dim[0], self.s_dim[1]])
+        self.inputs = tf.placeholder(tf.float32, [None, 25])
         self.old_pi = tf.placeholder(tf.float32, [None, self.a_dim])
         self.acts = tf.placeholder(tf.float32, [None, self.a_dim])
         self.entropy_weight = tf.placeholder(tf.float32)
@@ -118,6 +120,17 @@ class Network():
         self.optimize = tf.train.AdamOptimizer(self.lr_rate).minimize(self.loss)
 
     def predict(self, input):
+        # reshape inputs if necessary
+        if len(input.shape) == 3:
+            input_vector = []
+            input_vector.append(input[:, 0:1, -1])
+            input_vector.append(input[:, 1:2, -1])
+            input_vector.append(tf.squeeze(input[:, 2:3, :], axis=1))
+            input_vector.append(tf.squeeze(input[:, 3:4, :], axis=1))
+            input_vector.append(tf.squeeze(input[:, 4:5, :self.a_dim], axis=1))
+            input_vector.append(input[:, 5:6, -1])
+            input_vector = concatenate(input_vector, axis=-1)
+            input_vector = input
         action = self.sess.run(self.real_out, feed_dict={
             self.inputs: input
         })

@@ -69,6 +69,8 @@ def main():
         r_batch = []
         entropy_record = []
 
+        scalar_val = None
+
         video_count = 0
 
         while True:  # serve video forever
@@ -93,13 +95,24 @@ def main():
             last_bit_rate = bit_rate
 
             # log time_stamp, bit_rate, buffer_size, reward
-            log_file.write(str(time_stamp / M_IN_K) + '\t' +
+            if scalar_val is None:
+                log_file.write(str(time_stamp / M_IN_K) + '\t' +
                            str(VIDEO_BIT_RATE[bit_rate]) + '\t' +
                            str(buffer_size) + '\t' +
                            str(rebuf) + '\t' +
                            str(video_chunk_size) + '\t' +
                            str(delay) + '\t' +
-                           str(reward) + '\n')
+                           str(reward) + '\t' +
+                           str(np.nan) + '\n' )
+            else:
+                log_file.write(str(time_stamp / M_IN_K) + '\t' +
+                           str(VIDEO_BIT_RATE[bit_rate]) + '\t' +
+                           str(buffer_size) + '\t' +
+                           str(rebuf) + '\t' +
+                           str(video_chunk_size) + '\t' +
+                           str(delay) + '\t' +
+                           str(reward) + '\t' +
+                           str(scalar_val) + '\n' )
             log_file.flush()
 
             # retrieve previous state
@@ -119,7 +132,7 @@ def main():
             state[4, :A_DIM] = np.array(next_video_chunk_sizes) / M_IN_K / M_IN_K  # mega byte
             state[5, -1] = np.minimum(video_chunk_remain, CHUNK_TIL_VIDEO_END_CAP) / float(CHUNK_TIL_VIDEO_END_CAP)
 
-            action_prob = actor.predict(np.reshape(state, (1, S_INFO, S_LEN)))
+            action_prob, scalar_val = actor.predict(np.reshape(state, (1, S_INFO, S_LEN)))
             action_cumsum = np.cumsum(action_prob)
             bit_rate = (action_cumsum > np.random.randint(
                 1, RAND_RANGE) / float(RAND_RANGE)).argmax()
