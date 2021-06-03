@@ -271,6 +271,10 @@ def get_fc_layer_names():
     ckpt_layer_names = ['actor/FullyConnected']
     keras_layer_names = []
     for i in range(1, n_dense + 1):
+        # remove the layer that outputs the 6 bit rate probabilities
+        if i == n_dense - 1:
+            ckpt_layer_names[-1] = 'actor/FullyConnected_{}'.format(i)
+            continue
         if i < n_dense:
             ckpt_layer_names.append('actor/FullyConnected_{}'.format(i))
         keras_layer_names.append('dense_{}'.format(i))
@@ -285,10 +289,11 @@ if __name__=="__main__":
     # Obtain appropriate layer names depending on architecture
     ckpt_layer_names, keras_layer_names = get_fc_layer_names()
     print(ckpt_layer_names, keras_layer_names)
+    step = 95000
     actor = load_model_to_keras(
-        ckpt_path="results/ffd_3_64_05202021/summary/nn_model_ep_75000.ckpt",
-        csv_save_dir="keras_models/TEST/{}/pensieve_{}.csv".format(settings.MODEL_ARCH, settings.MODEL_ARCH),
-        h5_save_path='keras_models/TEST/{}/pensieve_{}.h5'.format(settings.MODEL_ARCH, settings.MODEL_ARCH),
+        ckpt_path="results/ffd_1_05172021/summary/nn_model_ep_{}.ckpt".format(step),
+        csv_save_dir="keras_models/{}_05252021_{}/pensieve_{}.csv".format(settings.MODEL_ARCH, step, settings.MODEL_ARCH),
+        h5_save_path='keras_models/{}_05252021_{}/pensieve_{}.h5'.format(settings.MODEL_ARCH, step, settings.MODEL_ARCH),
         ckpt_layer_names=ckpt_layer_names,
         keras_layer_names=keras_layer_names
     )
