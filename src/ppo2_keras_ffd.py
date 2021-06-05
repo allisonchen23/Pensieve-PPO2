@@ -22,7 +22,7 @@ EPS = 0.2
 class Network():
     def CreateNetwork(self, inputs, n_dense=1):
         with tf.variable_scope('actor'):
-            assert n_dense > 0
+            assert n_dense >= 0
 
             # Concatenate inputs into 1 vector
             # input_vector = []

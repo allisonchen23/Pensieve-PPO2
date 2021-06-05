@@ -1,8 +1,8 @@
 import os
 
-FEATURE_NUM                     = 64
-N_DENSE_LAYERS                  = 3
-MODEL_ARCH                      = 'ffd_{}_64'.format(N_DENSE_LAYERS)
+FEATURE_NUM                     = 10
+N_DENSE_LAYERS                  = 0
+MODEL_ARCH                      = 'ffd_{}_{}'.format(N_DENSE_LAYERS, FEATURE_NUM)
 RESULTS_DIR                     = os.path.join('results', MODEL_ARCH)
 TEST_LOG_FOLDER                 = os.path.join(RESULTS_DIR, '{}_test_results'.format(MODEL_ARCH))
 TEST_LOG_FILE                   = os.path.join(TEST_LOG_FOLDER, 'log_sim_rl')

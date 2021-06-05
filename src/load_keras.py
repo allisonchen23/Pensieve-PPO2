@@ -290,10 +290,11 @@ if __name__=="__main__":
     ckpt_layer_names, keras_layer_names = get_fc_layer_names()
     print(ckpt_layer_names, keras_layer_names)
     step = 95000
+    date = '06022021'
     actor = load_model_to_keras(
-        ckpt_path="results/ffd_1_05172021/summary/nn_model_ep_{}.ckpt".format(step),
-        csv_save_dir="keras_models/{}_05252021_{}/pensieve_{}.csv".format(settings.MODEL_ARCH, step, settings.MODEL_ARCH),
-        h5_save_path='keras_models/{}_05252021_{}/pensieve_{}.h5'.format(settings.MODEL_ARCH, step, settings.MODEL_ARCH),
+        ckpt_path="results/{}_{}/summary/nn_model_ep_{}.ckpt".format(settings.MODEL_ARCH, date, step),
+        csv_save_dir="keras_models/{}_06022021_{}/pensieve_{}.csv".format(settings.MODEL_ARCH, step, settings.MODEL_ARCH),
+        h5_save_path='keras_models/{}_06022021_{}/pensieve_{}.h5'.format(settings.MODEL_ARCH, step, settings.MODEL_ARCH),
         ckpt_layer_names=ckpt_layer_names,
         keras_layer_names=keras_layer_names
     )
