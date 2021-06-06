@@ -72,8 +72,8 @@ def plot_reward_and_bit_rate(file_path,
         save_path=os.path.join(save_dir, test_case + "_{}_scalar.png".format("bit_rate")))
 
 def flatten_input_data(obs,
-                       a_dim,
-                       s_dim):
+                       a_dim=6,
+                       s_dim=[6,8]):
     '''
     Given an observation (shape 6 X 8), flatten to 1D input for input to Keras
     We want to keep:

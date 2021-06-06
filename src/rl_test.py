@@ -7,6 +7,7 @@ import load_trace
 import ppo2_feed_forward_dense as network
 import fixed_env as env
 import global_constants as settings
+import utils
 
 S_INFO = 6  # bit_rate, buffer_size, next_chunk_size, bandwidth_measurement(throughput and time), chunk_til_video_end
 S_LEN = 8  # take how many frames in the past
@@ -27,6 +28,11 @@ RAND_RANGE = 1000
 TEST_TRACES = './cooked_test_traces/'
 # log in format of time_stamp bit_rate buffer_size rebuffer_time chunk_size download_time reward
 NN_MODEL = sys.argv[1]
+DUMP_INPUT_DATA = False
+DATA_DUMP_DIR = os.path.join("results", "flattened_inputs", "test")
+
+if DUMP_INPUT_DATA and not os.path.exists(DATA_DUMP_DIR):
+    os.makedirs(DATA_DUMP_DIR)
 
 def main():
 
@@ -40,6 +46,9 @@ def main():
                               all_cooked_bw=all_cooked_bw)
 
     log_path = settings.TEST_LOG_FILE + '_' + all_file_names[net_env.trace_idx]
+    # keep local variable of trace_idx bc net_env.trace_idx gets incremented when
+    # get_video_chunk is called
+    trace_idx = net_env.trace_idx
     log_file = open(log_path, 'w')
 
     with tf.Session() as sess:
@@ -73,7 +82,9 @@ def main():
 
         video_count = 0
 
+        flattened_inputs = []
         while True:  # serve video forever
+
             # the action is from the last decision
             # this is to make the framework similar to the real
             delay, sleep_time, buffer_size, rebuf, \
@@ -140,6 +151,13 @@ def main():
             s_batch.append(state)
             entropy_record.append(0.)
 
+            if DUMP_INPUT_DATA:
+                flattened_state = utils.flatten_input_data(
+                    obs=state,
+                    a_dim=A_DIM
+                )
+                flattened_inputs.append(flattened_state)
+
             if end_of_video:
                 log_file.write('\n')
                 log_file.close()
@@ -160,10 +178,19 @@ def main():
 
                 video_count += 1
 
+                # save data
+                if DUMP_INPUT_DATA:
+                    flattened_inputs = np.array(flattened_inputs)
+                    np.savetxt(
+                        os.path.join(DATA_DUMP_DIR, "test_data_{}.csv".format(all_file_names[trace_idx])),
+                        flattened_inputs,
+                        delimiter=',')
+                    flattened_inputs = []
                 if video_count >= len(all_file_names):
                     break
 
                 log_path = settings.TEST_LOG_FILE + '_' + all_file_names[net_env.trace_idx]
+                trace_idx = net_env.trace_idx
                 log_file = open(log_path, 'w')
 
 

@@ -121,8 +121,6 @@ def central_agent(net_params_queues, exp_queues):
                 p += p_
                 g += g_
             s_batch = np.stack(s, axis=0)
-            print("s_batch shape: {}".format(s_batch.shape))
-            print("s_batch: {}".format(s_batch[50, :, 0]))
             a_batch = np.vstack(a)
             p_batch = np.vstack(p)
             v_batch = np.vstack(g)
@@ -189,7 +187,6 @@ def agent(agent_id, net_params_queue, exp_queue, dump_input_data=False):
             actor.set_network_params(actor_net_params)
             if dump_input_data and epoch == 0:
                 flattened_input = np.array(flattened_input)
-                print("flattened inputs shape: {}".format(flattened_input.shape))
                 np.savetxt(
                     settings.SUMMARY_DIR + '/log_agent_' + str(agent_id),
                     flattened_input,
@@ -199,7 +196,7 @@ def agent(agent_id, net_params_queue, exp_queue, dump_input_data=False):
 def main():
 
     np.random.seed(RANDOM_SEED)
-    dump_input_data = True
+    dump_input_data = False
     # inter-process communication queues
     net_params_queues = []
     exp_queues = []
