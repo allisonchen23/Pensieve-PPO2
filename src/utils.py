@@ -71,6 +71,52 @@ def plot_reward_and_bit_rate(file_path,
         y_label='Bit Rate',
         save_path=os.path.join(save_dir, test_case + "_{}_scalar.png".format("bit_rate")))
 
+def flatten_input_data(obs,
+                       a_dim,
+                       s_dim):
+    '''
+    Given an observation (shape 6 X 8), flatten to 1D input for input to Keras
+    We want to keep:
+        * last bit rate
+        * last buffer size
+        * all bandwidth throughputs
+        * all bandwidth times
+        * last a_dim next_chunk_sizes
+        * last n_chunk_rem
+    Arg(s):
+        obs : 6 X 8 2D np array
+            original input data
+        a_dim : int
+            number of indices for next_chunk_sizes
+        s_dim : list(int)
+            shape of the state/obs
+    Returns:
+        np 1D array (25 elements)
+    '''
+    assert obs.shape == tuple(s_dim)
+    flattened = []
+    # Append previous bit rate
+    flattened.append(obs[0, -1])
+
+    # Append previous buffer size
+    flattened.append(obs[1, -1])
+
+    # Append all of throughput
+    flattened += list(obs[2, :])
+
+    # Append all of time
+    flattened += list(obs[3, :])
+
+    # Append last a_dim of next chunk sizes
+    flattened += list(obs[4, :a_dim])
+
+    # Append number chunks remaining
+    flattened.append(obs[5, -1])
+
+    assert len(flattened) == (3 + 2 * s_dim[1] + a_dim)
+
+    return flattened
+
 if __name__ == "__main__":
     vehicles = ['bus', 'car', 'ferry', 'metro', 'train', 'tram']
     n_max = 10

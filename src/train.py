@@ -7,6 +7,7 @@ from abr import ABREnv
 import ppo2_feed_forward_dense as network
 import tensorflow as tf
 import global_constants as settings
+import utils
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '3'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -15,7 +16,7 @@ S_DIM = [6, 8]
 A_DIM = 6
 ACTOR_LR_RATE =1e-4
 CRITIC_LR_RATE = 1e-3
-NUM_AGENTS = 2 #20
+NUM_AGENTS = 12 #20
 TRAIN_SEQ_LEN = 300  # take as a train batch
 TRAIN_EPOCH = 100000 # 1000000
 MODEL_SAVE_INTERVAL = 5000 # 300
@@ -120,6 +121,8 @@ def central_agent(net_params_queues, exp_queues):
                 p += p_
                 g += g_
             s_batch = np.stack(s, axis=0)
+            print("s_batch shape: {}".format(s_batch.shape))
+            print("s_batch: {}".format(s_batch[50, :, 0]))
             a_batch = np.vstack(a)
             p_batch = np.vstack(p)
             v_batch = np.vstack(g)
@@ -136,7 +139,7 @@ def central_agent(net_params_queues, exp_queues):
                     settings.SUMMARY_DIR + "/nn_model_ep_" + str(epoch) + ".ckpt",
                     test_log_file)
 
-def agent(agent_id, net_params_queue, exp_queue):
+def agent(agent_id, net_params_queue, exp_queue, dump_input_data=False):
     env = ABREnv(agent_id)
     with tf.Session() as sess, open(settings.SUMMARY_DIR + '/log_agent_' + str(agent_id), 'w') as log_file:
         actor = network.Network(sess,
@@ -149,12 +152,19 @@ def agent(agent_id, net_params_queue, exp_queue):
         actor.set_network_params(actor_net_params)
 
         time_stamp = 0
-
+        flattened_input = []
         for epoch in range(TRAIN_EPOCH):
             obs = env.reset()
             s_batch, a_batch, p_batch, r_batch = [], [], [], []
             for step in range(TRAIN_SEQ_LEN):
                 s_batch.append(obs)
+                if dump_input_data and epoch == 0:
+                    flattened_obs = utils.flatten_input_data(
+                        obs,
+                        a_dim=A_DIM,
+                        s_dim=S_DIM
+                    )
+                    flattened_input.append(flattened_obs)
 
                 action_prob, scalar_val = actor.predict(
                     np.reshape(obs, (1, S_DIM[0], S_DIM[1])))
@@ -177,11 +187,19 @@ def agent(agent_id, net_params_queue, exp_queue):
 
             actor_net_params = net_params_queue.get()
             actor.set_network_params(actor_net_params)
+            if dump_input_data and epoch == 0:
+                flattened_input = np.array(flattened_input)
+                print("flattened inputs shape: {}".format(flattened_input.shape))
+                np.savetxt(
+                    settings.SUMMARY_DIR + '/log_agent_' + str(agent_id),
+                    flattened_input,
+                    delimiter=",")
+
 
 def main():
 
     np.random.seed(RANDOM_SEED)
-
+    dump_input_data = True
     # inter-process communication queues
     net_params_queues = []
     exp_queues = []
@@ -200,7 +218,8 @@ def main():
         agents.append(mp.Process(target=agent,
                                  args=(i,
                                        net_params_queues[i],
-                                       exp_queues[i])))
+                                       exp_queues[i],
+                                       dump_input_data)))
     for i in range(NUM_AGENTS):
         agents[i].start()
 
