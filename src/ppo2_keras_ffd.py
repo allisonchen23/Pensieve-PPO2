@@ -52,8 +52,7 @@ class Network():
                 activation='relu',
                 kernel_initializer='truncated_normal')(base_dense)
 
-            # pi = tflearn.fully_connected(net, self.a_dim, activation='softmax')
-            # value = tflearn.fully_connected(net, 1, activation='linear')
+
             pi = Dense(self.a_dim,
                 activation='relu',
                 kernel_initializer='truncated_normal')(net)
@@ -63,8 +62,15 @@ class Network():
 
             outputs = concatenate([pi, value], axis=-1)
 
-            model = Model(inputs=keras_inputs, outputs=[pi, value])
+            # model = Model(inputs=keras_inputs, outputs=[pi, value])
+            model = Model(inputs=keras_inputs, outputs=value)
+
             return pi, value, model
+            # value = Dense(1,
+            #     activation='linear',
+            #     kernel_initializer='truncated_normal')(net)
+            # model = Model(inputs=keras_inputs, outputs=value)
+            # return value, value, model
 
     def get_network_params(self):
         return self.sess.run(self.network_params)
