@@ -38,6 +38,35 @@ def add_col(df,
         value=values
     )
 
+def make_np_data_comet_compatible(np_data,
+                          gt_name,
+                          headers):
+    '''
+    Convert np_data to pandas data frame and make comet compatible.
+    Return dataframe
+    '''
+    # Convert to Pandas dataframe
+    df = pd.Dataframe(np_data)
+
+    # Add headers to columns
+    add_headers(
+        df=df,
+        headers=headers
+    )
+
+    # Add GT column
+    add_col(
+        df=df,
+        col_name=gt_name,
+        index=0,
+        random=True,
+        min_val=df['prev_bit_rate'].min(),
+        max_val=df['prev_bit_rate'].max(),
+        values=None
+    )
+
+    return df
+
 def make_comet_compatible(read_path,
                           save_path,
                           gt_name,

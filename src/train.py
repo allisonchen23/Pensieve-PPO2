@@ -8,6 +8,7 @@ import ppo2_feed_forward_dense as network
 import tensorflow as tf
 import global_constants as settings
 import utils
+import pandas as pd
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '3'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -22,13 +23,9 @@ TRAIN_EPOCH = 100000 # 1000000
 MODEL_SAVE_INTERVAL = 5000 # 300
 RANDOM_SEED = 42
 RAND_RANGE = 10000
-# SUMMARY_DIR = './results'
 MODEL_DIR = './models'
 TRAIN_TRACES = './cooked_traces/'
-# MODEL_ARCH = 'ffd'
-# N_DENSE_LAYERS = 1
-# TEST_LOG_FOLDER = './{}_test_results/'.format(MODEL_ARCH)
-# LOG_FILE = './results/{}_log'.format(MODEL_ARCH)
+
 PPO_TRAINING_EPO = 10
 
 
@@ -150,13 +147,23 @@ def agent(agent_id, net_params_queue, exp_queue, dump_input_data=False):
         actor.set_network_params(actor_net_params)
 
         time_stamp = 0
+
+        # Initialize variables for flattening data and create output directory
         flattened_input = []
+        if dump_input_data \
+            and agent_id == 0:
+            if os.path.isdir(settings.TRAIN_DATA_DUMP_DIR):
+                os.system("rm -rf {}".format(settings.TRAIN_DATA_DUMP_DIR))
+            os.makedirs(settings.TRAIN_DATA_DUMP_DIR)
+
         for epoch in range(TRAIN_EPOCH):
             obs = env.reset()
             s_batch, a_batch, p_batch, r_batch = [], [], [], []
             for step in range(TRAIN_SEQ_LEN):
                 s_batch.append(obs)
-                if dump_input_data and epoch == 0:
+                if dump_input_data \
+                    and agent_id == 0 \
+                    and epoch % settings.SAVE_INPUT_DATA_INTERVAL == 0:
                     flattened_obs = utils.flatten_input_data(
                         obs,
                         a_dim=A_DIM,
@@ -185,18 +192,54 @@ def agent(agent_id, net_params_queue, exp_queue, dump_input_data=False):
 
             actor_net_params = net_params_queue.get()
             actor.set_network_params(actor_net_params)
-            if dump_input_data and epoch == 0:
+            if dump_input_data \
+                and agent_id == 0 \
+                and epoch % settings.SAVE_INPUT_DATA_INTERVAL == 0:
                 flattened_input = np.array(flattened_input)
-                np.savetxt(
-                    settings.SUMMARY_DIR + '/log_agent_' + str(agent_id),
-                    flattened_input,
-                    delimiter=",")
+                flattened_input = utils.make_np_data_comet_compatible(
+                    np_data=flattened_input,
+                    gt_name='bit_rate',
+                    headers=[
+                        "prev_bit_rate",
+                        "buffer_size",
+                        "bandwidth_throughput_0",
+                        "bandwidth_throughput_1",
+                        "bandwidth_throughput_2",
+                        "bandwidth_throughput_3",
+                        "bandwidth_throughput_4",
+                        "bandwidth_throughput_5",
+                        "bandwidth_throughput_6",
+                        "bandwidth_throughput_7",
+                        "bandwidth_time_0",
+                        "bandwidth_time_1",
+                        "bandwidth_time_2",
+                        "bandwidth_time_3",
+                        "bandwidth_time_4",
+                        "bandwidth_time_5",
+                        "bandwidth_time_6",
+                        "bandwidth_time_7",
+                        "next_chunk_sizes_0",
+                        "next_chunk_sizes_1",
+                        "next_chunk_sizes_2",
+                        "next_chunk_sizes_3",
+                        "next_chunk_sizes_4",
+                        "next_chunk_sizes_5",
+                        "n_chunks_remaining"]
+                )
+                # np.savetxt(
+                #     settings.SUMMARY_DIR + '/log_agent_' + str(agent_id),
+                #     flattened_input,
+                #     delimiter=",")
+                
+                flattened_input.to_csv(os.path.join(settings.TRAIN_DATA_DUMP_DIR, 'train_data_epoch_{}.csv'.format(epoch)))
+                # Reset flattened_input
+                flattened_input = []
 
 
 def main():
 
     np.random.seed(RANDOM_SEED)
-    dump_input_data = False
+    dump_input_data = settings.DUMP_INPUT_DATA
     # inter-process communication queues
     net_params_queues = []
     exp_queues = []

@@ -92,6 +92,11 @@ This code works on a high level by the following steps:
 
 ### Running COMET
 
+#### Obtain Data
+
+The input data for COMET has to be a csv where each line represents the data value for each input. In order to save an example of the data used in training, in the file `global_constants.py` find the constant `DUMP_INPUT_DATA` and set it to `True`. You can additionally edit the variable `SAVE_INPUT_DATA_INTERVAL` to be how often you want to save the training data. Setting `DUMP_INPUT_DATA` will also save the test data in the file `rl_test.py`. To configure the paths to directories for dumping the data, edit the constants in `global_constants.py` `TRAIN_DATA_DUMP_DIR` and `TEST_DATA_DUMP_DIR`.
+
+Saving the test data looks a little differently.
 * get training data
 * copy over files (h5, data, csvs)
 * here we refer to comet documentation

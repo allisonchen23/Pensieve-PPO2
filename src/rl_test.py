@@ -28,11 +28,11 @@ RAND_RANGE = 1000
 TEST_TRACES = './cooked_test_traces/'
 # log in format of time_stamp bit_rate buffer_size rebuffer_time chunk_size download_time reward
 NN_MODEL = sys.argv[1]
-DUMP_INPUT_DATA = False
-DATA_DUMP_DIR = os.path.join("results", "flattened_inputs", "test")
+# DUMP_INPUT_DATA = False
+# DATA_DUMP_DIR = os.path.join("results", "flattened_inputs", "test")
 
-if DUMP_INPUT_DATA and not os.path.exists(DATA_DUMP_DIR):
-    os.makedirs(DATA_DUMP_DIR)
+if settings.DUMP_INPUT_DATA and not os.path.exists(settings.TEST_DATA_DUMP_DIR):
+    os.makedirs(settings.TEST_DATA_DUMP_DIR)
 
 def main():
 
@@ -151,7 +151,7 @@ def main():
             s_batch.append(state)
             entropy_record.append(0.)
 
-            if DUMP_INPUT_DATA:
+            if settings.DUMP_INPUT_DATA:
                 flattened_state = utils.flatten_input_data(
                     obs=state,
                     a_dim=A_DIM
@@ -179,10 +179,10 @@ def main():
                 video_count += 1
 
                 # save data
-                if DUMP_INPUT_DATA:
+                if settings.DUMP_INPUT_DATA:
                     flattened_inputs = np.array(flattened_inputs)
                     np.savetxt(
-                        os.path.join(DATA_DUMP_DIR, "test_data_{}.csv".format(all_file_names[trace_idx])),
+                        os.path.join(settings.TEST_DATA_DUMP_DIR, "test_data_{}.csv".format(all_file_names[trace_idx])),
                         flattened_inputs,
                         delimiter=',')
                     flattened_inputs = []

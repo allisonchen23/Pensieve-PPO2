@@ -117,6 +117,73 @@ def flatten_input_data(obs,
 
     return flattened
 
+'''
+Make data COMET compatible
+'''
+def add_headers(df,
+                headers=[]):
+    '''
+    Add headers to the dataframe
+    '''
+    assert len(headers) == len(df.columns)
+    df.columns = headers
+
+def add_col(df,
+            col_name,
+            index=0,
+            random=True,
+            min_val=0,
+            max_val=1,
+            values=None):
+    '''
+    Add column to df. Randomly fill with values betwen min and max if random is True
+    Otherwise fill in with values.
+    random cannot be false while values is None
+    '''
+    n_rows = len(df)
+    assert 0 <= index and index <= len(df.columns)
+
+    if not random:
+        assert values is not None
+    else:
+        values = (max_val - min_val) * np.random.rand(n_rows) + min_val
+
+    # insert values at the index specified
+    df.insert(
+        loc=index,
+        column=col_name,
+        value=values
+    )
+
+def make_np_data_comet_compatible(np_data,
+                          gt_name,
+                          headers):
+    '''
+    Convert np_data to pandas data frame and make comet compatible.
+    Return dataframe
+    '''
+    # Convert to Pandas dataframe
+    df = pd.DataFrame(np_data)
+
+    # Add headers to columns
+    add_headers(
+        df=df,
+        headers=headers
+    )
+
+    # Add GT column
+    add_col(
+        df=df,
+        col_name=gt_name,
+        index=0,
+        random=True,
+        min_val=df['prev_bit_rate'].min(),
+        max_val=df['prev_bit_rate'].max(),
+        values=None
+    )
+
+    return df
+
 if __name__ == "__main__":
     vehicles = ['bus', 'car', 'ferry', 'metro', 'train', 'tram']
     n_max = 10
