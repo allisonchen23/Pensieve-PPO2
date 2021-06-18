@@ -220,46 +220,46 @@ def load_actor(h5_path,
         actor.load_weights(h5_path)
     return actor
 
-def save_actor_end(actor,
-                   save_h5_path=None,
-                   save_csv_dir=None):
-    '''
-    Save the final two layers of the actor
-    Arg(s):
-        actor: ActorNetwork object
-            original model from which to save weights
-        save_h5_path : str or None
-                save .h5 model to path if specified
-        save_csv_dir : str or None
-            save weights as CSV files in this directory if specified
-    '''
-    actor_end = actor.save_actor_end(
-        save_h5_path=save_h5_path,
-        save_csv_dir=save_csv_dir)
-    return actor_end
-def save_actor_end2(h5_path,
-               state_info=S_INFO,
-               state_len=S_LEN,
-               actor_dim=A_DIM,
-               actor_lr=ACTOR_LR_RATE,
-               save_h5_path=None,
-                   save_csv_dir=None):
-    with tf.Session() as sess:
+# def save_actor_end(actor,
+#                    save_h5_path=None,
+#                    save_csv_dir=None):
+#     '''
+#     Save the final two layers of the actor
+#     Arg(s):
+#         actor: ActorNetwork object
+#             original model from which to save weights
+#         save_h5_path : str or None
+#                 save .h5 model to path if specified
+#         save_csv_dir : str or None
+#             save weights as CSV files in this directory if specified
+#     '''
+#     actor_end = actor.save_actor_end(
+#         save_h5_path=save_h5_path,
+#         save_csv_dir=save_csv_dir)
+#     return actor_end
+# def save_actor_end2(h5_path,
+#                state_info=S_INFO,
+#                state_len=S_LEN,
+#                actor_dim=A_DIM,
+#                actor_lr=ACTOR_LR_RATE,
+#                save_h5_path=None,
+#                    save_csv_dir=None):
+#     with tf.Session() as sess:
 
-        actor = network.Network(
-            sess=sess,
-            state_dim=[state_info, state_len],
-            action_dim=actor_dim,
-            learning_rate=actor_lr
-        )
-        sess.run(tf.global_variables_initializer())
-        saver = tf.train.Saver()  # save neural net parameters
+#         actor = network.Network(
+#             sess=sess,
+#             state_dim=[state_info, state_len],
+#             action_dim=actor_dim,
+#             learning_rate=actor_lr
+#         )
+#         sess.run(tf.global_variables_initializer())
+#         saver = tf.train.Saver()  # save neural net parameters
 
-        actor.load_weights(h5_path)
-        actor_end = actor.save_actor_end(
-            save_h5_path=save_h5_path,
-        save_csv_dir=save_csv_dir)
-        return actor_end
+#         actor.load_weights(h5_path)
+#         actor_end = actor.save_actor_end(
+#             save_h5_path=save_h5_path,
+#         save_csv_dir=save_csv_dir)
+#         return actor_end
 
 def get_fc_layer_names():
     '''
